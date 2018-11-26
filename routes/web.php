@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['namespace' => 'Front'], function ($router) {
+    $router->get('/', 'PageController@index')->name('top');
+    $router->resource('picks', 'PickController');
+
+    Route::group(['prefix' => 'mypage'], function ($router) {
+        $router->get('/', 'MypageController@index')->name('front.mypage.index');
+    });
+});
