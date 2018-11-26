@@ -20,6 +20,6 @@ Route::group(['namespace' => 'Front'], function ($router) {
     $router->resource('picks', 'PickController');
 
     Route::group(['prefix' => 'mypage'], function ($router) {
-        $router->get('/', 'MypageController@index')->name('front.mypage.index');
+        $router->get('/', 'MypageController@index')->name('mypage.index');
     });
 });
