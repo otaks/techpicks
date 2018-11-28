@@ -1,15 +1,87 @@
-let mix = require('laravel-mix');
+// import .env / plugin
+require("dotenv").config();
+const mix = require("laravel-mix");
+const glob = require("glob");
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+// Compile all scss files directly under the sass directory
+glob.sync("resources/assets/sass/*.scss").map(function (file) {
+   console.log(file);
+   mix.sass(file, "public/css/front.css").options({
+      processCssUrls: false,
+      postCss: [
+         require("css-mqpacker")(),
+         require("css-declaration-sorter")({
+            order: "smacss"
+         })
+      ],
+      autoprefixer: {
+         options: {
+            browsers: ["last 2 versions"]
+         }
+      }
+   });
+});
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+// Compile all js files directly under the js directory
+let jsPath = 'resources/assets/js/';
+let frontJs = [`${jsPath}front.js`].concat(glob.sync(`${jsPath}/front/**/*.js`));
+mix.js(frontJs, 'public/js/front.js');
+// glob.sync("resources/assets/js/**/*.js").map(function (file) {
+//    mix.js(file, "public/js");
+// });
+
+
+mix
+   // Notification off
+   //.disableNotifications()
+
+   // Setting browserSync
+   // .browserSync({
+   //    // Using a vhost-based url
+   //    // proxy: process.env.MIX_SENTRY_DSN_PUBLIC || 'http://localhost:8080',
+   //    // Serve files frnpm install --save-dev css-mqpackerom the public directory
+   //    server: {
+   //    baseDir: "public",
+   //    index: "index.html"
+   //    },
+   //    port: 8080,
+   //    proxy: false,
+   //    // Watch files
+   //    files: "public/**/*"
+   // })
+
+   // Added webpackConfig settings
+   .webpackConfig({
+      module: {
+         rules: [
+            {
+               // JavaScript Prettier Setting
+               test: /\.js$/,
+               loader: "prettier-loader",
+               options: {
+                  // Prettier Options https://prettier.io/docs/en/options.html
+                  singleQuote: true,
+                  semi: false
+               }
+            },
+            {
+               // Allow .scss files imported glob
+               test: /\.scss/,
+               loader: "import-glob-loader"
+            },
+            {
+               // Sass Prettier Setting
+               test: /\.scss$/,
+               loader: "prettier-loader",
+               options: {
+                  parser: "postcss"
+               }
+            }
+         ]
+      }
+   });
+
+// Generate sourcemap only for development environment
+if (!mix.inProduction()) {
+   mix.sourceMaps();
+}

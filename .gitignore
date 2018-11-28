@@ -1,6 +1,11 @@
 /node_modules
 /public/hot
 /public/storage
+/public/css/front.css
+/public/js/front.js
+/public/js/manifest.js
+/public/js/vendor.js
+/public/mix-manifest.json
 /storage/*.key
 /vendor
 /.idea
