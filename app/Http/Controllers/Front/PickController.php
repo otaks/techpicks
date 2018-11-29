@@ -49,7 +49,6 @@ class PickController extends Controller
      */
     public function show($id)
     {
-        echo "詳細表示";
         return view("{$this->prefix}show");
     }
 
