@@ -77,4 +77,7 @@ a.article:hover {
     transition: all 0.3s;
     position: relative;
     padding-bottom: $footer-height + 20px;
+    @media (min-width: $small-screen) {
+        padding-bottom: 0;
+    }
 }

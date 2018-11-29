@@ -12,6 +12,7 @@
     position: fixed;
     bottom: 0;
     @media (min-width: $small-screen) {
+        display:none;
         position: absolute;
         right: 0;
         left: 0;
