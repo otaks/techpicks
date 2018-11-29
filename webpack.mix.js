@@ -30,6 +30,10 @@ mix.js(frontJs, 'public/js/front.js');
 //    mix.js(file, "public/js");
 // });
 
+//Fonts
+mix
+   .copy('node_modules/font-awesome/fonts', 'public/fonts')
+   .copy('node_modules/typeface-mplus-1p/fonts', 'public/fonts')
 
 mix
    // Notification off
