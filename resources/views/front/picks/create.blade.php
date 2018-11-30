@@ -2,8 +2,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            Pick新規登録
+        <div class="col-sm-8 mb-5">
+            @include('front.picks._form')
+        </div>
+        <div class="col-sm-4">
         </div>
     </div>
 </div>

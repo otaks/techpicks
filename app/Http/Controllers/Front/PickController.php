@@ -26,8 +26,7 @@ class PickController extends Controller
      */
     public function create()
     {
-        echo "新規Pickページ";
-        return view("{$this->prefix}index");
+        return view("{$this->prefix}create");
     }
 
     /**
@@ -60,7 +59,6 @@ class PickController extends Controller
      */
     public function edit($id)
     {
-        echo "Pickした記事のコメントを編集する";
         return view("{$this->prefix}edit");
     }
 
