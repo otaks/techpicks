@@ -9,7 +9,6 @@ $ brew install docker-compose
 ```
 
 ## コマンド
-/dockerのdocker-compose.ymlのあるところで実行してね
 ```
 # 起動
 $ docker-compose up -d
