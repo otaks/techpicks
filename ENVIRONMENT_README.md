@@ -5,7 +5,7 @@
 # Homebrew インストール (まだの場合)
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # brewでインストール (まだの場合)
-$ brew install docker-compose
+$ brew cask install docker
 ```
 
 ## コマンド
