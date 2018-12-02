@@ -6,6 +6,7 @@
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # brewでインストール (まだの場合)
 $ brew cask install docker
+$ open /Applications/Docker.app
 ```
 
 ## コマンド
