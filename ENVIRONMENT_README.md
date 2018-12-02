@@ -16,3 +16,15 @@ $ docker-compose up -d
 # 削除
 $ docker-compose down
 ```
+
+## .env
+```
+...
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cm_db
+DB_USERNAME=cm_user
+DB_PASSWORD=password
+...
+```
