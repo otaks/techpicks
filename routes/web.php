@@ -23,3 +23,10 @@ Route::group(['namespace' => 'Front'], function ($router) {
         $router->get('/', 'MypageController@index')->name('mypage.index');
     });
 });
+
+/*
+ * Facebook login
+ */
+Route::get('auth/login', 'Auth\SocialController@viewLogin');
+Route::get('auth/login/facebook', 'Auth\SocialController@redirectToFacebookProvider');
+Route::get('auth/facebook/callback', 'Auth\SocialController@handleFacebookProviderCallback');
