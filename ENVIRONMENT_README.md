@@ -26,5 +26,10 @@ DB_PORT=3306
 DB_DATABASE=cm_db
 DB_USERNAME=cm_user
 DB_PASSWORD=password
+
+# Facebook Login(Test)
+ FACEBOOK_APP_ID = 271409093570484
+ FACEBOOK_APP_SECRET = 66450913d1e8044cd73b29ce62ff051d
+ FACEBOOK_CALLBACK_URL = http://localhost/login/facebook/callback
 ...
 ```
