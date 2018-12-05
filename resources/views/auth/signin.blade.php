@@ -1,5 +1,5 @@
 <html>
     <body>
-        <a href="/auth/login">facebook login</a>
+        <a href="/login/facebook">facebook login</a>
     </body>
 </html>

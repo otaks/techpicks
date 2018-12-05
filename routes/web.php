@@ -27,6 +27,8 @@ Route::group(['namespace' => 'Front'], function ($router) {
 /*
  * Facebook login
  */
-Route::get('auth/login', 'Auth\SocialController@viewLogin');
-Route::get('auth/login/facebook', 'Auth\SocialController@redirectToFacebookProvider');
-Route::get('auth/facebook/callback', 'Auth\SocialController@handleFacebookProviderCallback');
+
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('login/facebook', 'LoginController@socialLogin');
+    Route::get('login/facebook/callback', 'LoginController@callback');
+});

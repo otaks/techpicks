@@ -39,7 +39,7 @@ return [
      * Facebook login
      */
     'facebook' => [
-        'CLIENT_ID' => ENV('FACEBOOK_APP_ID'),
+        'client_id' => ENV('FACEBOOK_APP_ID'),
         'client_secret' => ENV('FACEBOOK_APP_SECRET'),
         'redirect' => ENV('FACEBOOK_CALLBACK_URL'),
     ]
