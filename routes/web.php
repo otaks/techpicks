@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +24,15 @@ Route::group(['namespace' => 'Front'], function ($router) {
     Route::group(['prefix' => 'mypage'], function ($router) {
         $router->get('/', 'MypageController@index')->name('mypage.index');
     });
+});
+
+
+/*
+ * ログインしているユーザーのルーティング
+ */
+Route::group(['middleware' => ['auth']], function () {
+    // この中はログインされている場合のみルーティングされる
+    Route::get('/logout', 'UserController@logout');
 });
 
 /*

@@ -23,6 +23,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{__('navbar.page4')}}</a>
                 </li>
+
+                @if (!Auth::check())
+                <li class="nav-item">
+                    <a class="login nav-link" href="{{ route('login') }}">ログイン</a>
+                </li>
+                <li class="nav-item">
+                    <a class="register nav-link" href="{{ route('register') }}">会員登録</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="login nav-link" href="{{ route('logout') }}">ログアウト</a>
+                @endif
             </ul>
         </div>
     </div>
