@@ -17,21 +17,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['namespace' => 'Front'], function ($router) {
-    $router->get('/', 'PageController@index')->name('top');
-    $router->resource('picks', 'PickController');
-
-    Route::group(['prefix' => 'mypage'], function ($router) {
-        $router->get('/', 'MypageController@index')->name('mypage.index');
-    });
-});
-
-
 /*
  * ログインしているユーザーのルーティング
  */
 Route::group(['middleware' => ['auth']], function () {
     // この中はログインされている場合のみルーティングされる
+    Route::group(['namespace' => 'Front'], function ($router) {
+        $router->get('/', 'PageController@index')->name('top');
+        $router->resource('picks', 'PickController');
+
+        Route::group(['prefix' => 'mypage'], function ($router) {
+            $router->get('/', 'MypageController@index')->name('mypage.index');
+        });
+    });
+
     Route::get('/logout', 'UserController@logout');
 });
 
