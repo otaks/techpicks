@@ -64,6 +64,9 @@
                     <a class="fbButton" href="/login/facebook">
                         <div class="fbButtonLabel">Facebook Login</div>
                     </a>
+                    <a class="" href="/register">
+                        <div class="">会員登録がお済みでない方はこちら</div>
+                    </a>
                 </div>
             </div>
         </div>
