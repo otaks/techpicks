@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pick extends Model
+class Post extends Model
 {
-    /**
+        /**
      * モデルと関連しているテーブル
      *
      * @var string
      */
-    protected $table = 'picks';
+    protected $table = 'posts';
 
-    protected $fillable = ['comment'];
+    protected $fillable = ['url', 'title', 'description'];
 }
