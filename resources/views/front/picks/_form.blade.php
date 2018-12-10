@@ -1,8 +1,8 @@
 <form>
-    <h3 class="mb-5">キジヲピピック</h3>
+    <h3 class="mb-5">{{ $post->title }}</h3>
     <div class="form-group">
         <label for="url">URL</label>
-        <input type="url" class="form-control" id="url" placeholder="http://newspicks.com">
+        <input type="url" class="form-control" id="url" value="{{ $post->url }}" placeholder="http://newspicks.com">
     </div>
     <div class="card card-post mt-5 mb-5">
         <div class="card-img-block">

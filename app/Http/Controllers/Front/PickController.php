@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
 
 class PickController extends Controller
 {
@@ -24,9 +25,9 @@ class PickController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view("{$this->prefix}create");
+        return view("{$this->prefix}create", ["post"=>$post]);
     }
 
     /**

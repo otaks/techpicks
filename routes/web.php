@@ -24,6 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
     // この中はログインされている場合のみルーティングされる
     Route::group(['namespace' => 'Front'], function ($router) {
         $router->get('/', 'PageController@index')->name('top');
+
+        $router->get('/picks/create/{post}', 'PickController@create')->where('post', '[0-9]+');
+        $router->get('/picks/{id}', 'PickController@show')->where('id', '[0-9]+');
+
         $router->resource('picks', 'PickController');
 
         Route::group(['prefix' => 'mypage'], function ($router) {
