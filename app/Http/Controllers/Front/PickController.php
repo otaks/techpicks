@@ -27,7 +27,7 @@ class PickController extends Controller
      */
     public function create(Post $post)
     {
-        return view("{$this->prefix}create", ["post"=>$post]);
+        return view("{$this->prefix}create", ["post"=>$post, "show_url"=>false]);
     }
 
     /**

@@ -1,9 +1,11 @@
 <form>
     <h3 class="mb-5">{{ $post->title }}</h3>
+    @if ($show_url)
     <div class="form-group">
         <label for="url">URL</label>
         <input type="url" class="form-control" id="url" value="{{ $post->url }}" placeholder="http://newspicks.com">
     </div>
+    @endif
     <div class="card card-post mt-5 mb-5">
         <div class="card-img-block">
             <img class="img-fluid" src="https://images.pexels.com/photos/870903/pexels-photo-870903.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Card image cap">
