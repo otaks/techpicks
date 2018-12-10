@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -11,6 +12,12 @@ class PageController extends Controller
 
     public function index()
     {
-        return view("{$this->prefix}index");
+        // 最新10件のみ記事を表示する
+        $results = DB::table('posts')
+            ->orderBy('created_at')
+            ->take(10)
+            ->get();
+
+        return view("{$this->prefix}index", compact('results'));
     }
 }
