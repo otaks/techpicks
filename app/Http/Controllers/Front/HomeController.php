@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PageController extends Controller
+class HomeController extends Controller
 {
-    private $prefix = 'front.pages.';
+    private $prefix = 'front.home.';
 
     public function index()
     {
