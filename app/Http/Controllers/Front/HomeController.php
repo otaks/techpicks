@@ -4,19 +4,22 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\PostService;
 
 class HomeController extends Controller
 {
     private $prefix = 'front.home.';
+    protected $hogeService;
+
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
 
     public function index()
     {
         // 最新10件のみ記事を表示する
-        $results = DB::table('posts')
-            ->orderBy('created_at')
-            ->take(10)
-            ->get();
+        $results = $this->postService->getLatestTenArticles();
 
         return view("{$this->prefix}index", compact('results'));
     }
