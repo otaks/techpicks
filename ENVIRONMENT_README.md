@@ -9,6 +9,25 @@ $ brew cask install docker
 $ open /Applications/Docker.app
 ```
 
+# npm or yarn
+
+nodeを使う場合  
+```
+# SEE: https://qiita.com/Alex_mht_code/items/422f5ce10d9c9d5729b7
+```
+
+Yarnを使う場合  
+```
+$ brew install yarn
+```
+
+# composer
+
+```
+# SEE: https://qiita.com/naoki_koreeda/items/726598a938f3c211ff49
+$ brew install composer
+```
+
 ## コマンド
 ```
 # 起動
