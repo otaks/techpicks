@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePicksTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreatePicksTable extends Migration
      */
     public function up()
     {
-        Schema::create('picks', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->references('id')->on('users');
-            $table->integer('post_id')->references('id')->on('post');
-            $table->longText('comment')->charset('utf8')->nullable();
-            $table->bigInteger('is_liked_count')->nullable(false);
+            $table->bigInteger('pick_id')->references('id')->on('picks')->nullable(false);
+            $table->bigInteger('user_id')->references('id')->on('users')->nullable(false);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreatePicksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('picks');
+        Schema::dropIfExists('likes');
     }
 }
