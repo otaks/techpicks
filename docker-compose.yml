@@ -26,6 +26,8 @@ services:
       - DB_HOST=mysql
   mysql:
     image: mysql:5.7
+    volumes:
+      - ./docker/db/mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=cm_db
