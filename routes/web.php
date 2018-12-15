@@ -24,10 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
     // この中はログインされている場合のみルーティングされる
     Route::group(['namespace' => 'Front'], function ($router) {
         $router->get('/', 'HomeController@index')->name('top');
-        $router->get('/picks/create/{post}', 'PickController@create')->where('post', '[0-9]+');
-        $router->get('/picks/{id}', 'PickController@show')->where('id', '[0-9]+');
 
-        $router->resource('picks', 'PickController');
+        //ピック時コメント入力関連
+        $router->get('/picks/create/{postId}', 'PickController@create')->where('postId', '[0-9]+');
+        $router->post('/picks', 'PickController@store');
 
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');

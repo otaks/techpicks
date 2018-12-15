@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
+use App\Post;
 
 class PostService
 {
@@ -14,5 +15,13 @@ class PostService
             ->get();
 
         return $results;
+    }
+
+    /**
+     * 指定されたIDでPostを検索する
+     */
+    public function get($id)
+    {
+        return Post::find($id);
     }
 }
