@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         $router->resource('picks', 'PickController');
 
+        $router->get('post/create', 'PostController@create')->name('post.create');
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');
         });
