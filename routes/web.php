@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
         $router->get('post/create', 'PostController@create')->name('post.create');
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');
+
+        //記事詳細画面
+        Route::get('/picks/detail/{postId}', 'PickdetailController@show');
         });
 
         $router->get('posts/create', 'PostController@create');
