@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         $router->get('/picks/create/{postId}', 'PickController@create')->where('postId', '[0-9]+');
         $router->post('/picks', 'PickController@store');
 
+        $router->get('post/create', 'PostController@create')->name('post.create');
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');
         });
