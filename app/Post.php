@@ -13,5 +13,10 @@ class Post extends Model
      */
     protected $table = 'posts';
 
-    protected $fillable = ['url', 'title', 'description'];
+    protected $fillable = ['url', 'title', 'description', 'is_picked_count'];
+
+    public function pick()
+    {
+        return $this->belongsTo('App\Pick');
+    }
 }

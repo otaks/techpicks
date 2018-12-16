@@ -32,8 +32,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');
         });
+
+        $router->get('posts/create', 'PostController@create');
+        $router->post('posts/create', 'PostController@store');
     });
-    Route::resource('post', 'HomeController');
 
     Route::get('/logout', 'UserController@logout');
 });
