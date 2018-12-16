@@ -40,8 +40,10 @@ class PickController extends Controller
         $pickData = $pickRequest->all();
         $pickData['userId'] = Auth::user()->id;
 
+        //ピックを登録
         $this->pickService->create($pickData);
 
+        //マイピック一覧へリダイレクト
         return redirect('/mypage');
     }
 
@@ -50,7 +52,7 @@ class PickController extends Controller
      */
     public function show($id)
     {
-        return view("{$this->prefix}show");
+        echo "ピック照会画面表示";
     }
 
     /**
@@ -58,7 +60,7 @@ class PickController extends Controller
      */
     public function edit($id)
     {
-        return view("{$this->prefix}edit");
+        echo "ピック編集画面表示";
     }
 
     /**
