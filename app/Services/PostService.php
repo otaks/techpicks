@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
+use App\Post;
 
 class PostService
 {
@@ -14,5 +15,28 @@ class PostService
             ->get();
 
         return $results;
+    }
+
+    /**
+     * 指定されたIDでPostを検索する
+     */
+    public function get($id)
+    {
+        return Post::find($id);
+    }
+
+    /**
+     * 記事を登録する
+     * @param $post
+     * @return mixed
+     */
+    public function save($post)
+    {
+        return  Post::create([
+            'url'             => $post['url'],
+            'title'           => $post['title'],
+            'description'     => $post['description'],
+            'is_picked_count' => 1,
+        ]);
     }
 }

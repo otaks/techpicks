@@ -5,36 +5,33 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use \App\Services\PickService;
+use \App\Services\PostService;
 
 class PickController extends Controller
 {
     private $prefix = 'front.picks.';
+    private $pickService;
+    private $postService;
+
+    public function __construct(PostService $postService, PickService $pickService)
+    {
+        $this->postService = $postService;
+        $this->pickService = $pickService;
+    }
+
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ピック登録画面表示
      */
-    public function index()
+    public function create($postId)
     {
-        return view("{$this->prefix}index");
+        $post = $this->postService->get($postId);
+        return view("{$this->prefix}create", ["post"=>$post]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Post $post)
-    {
-        return view("{$this->prefix}create", ["post"=>$post, "show_url"=>false]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * ピック登録
      */
     public function store(Request $request)
     {
@@ -42,10 +39,7 @@ class PickController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ピック表示
      */
     public function show($id)
     {
@@ -53,10 +47,7 @@ class PickController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ピック編集画面表示
      */
     public function edit($id)
     {
@@ -64,11 +55,7 @@ class PickController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ピック更新
      */
     public function update(Request $request, $id)
     {
@@ -76,10 +63,7 @@ class PickController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ピック削除
      */
     public function destroy($id)
     {
