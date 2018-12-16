@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-use \App\Services\PickService;
-use \App\Services\PostService;
+use App\Services\PickService;
+use App\Services\PostService;
+use App\Http\Requests\PickRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PickController extends Controller
 {
@@ -27,15 +29,20 @@ class PickController extends Controller
     public function create($postId)
     {
         $post = $this->postService->get($postId);
-        return view("{$this->prefix}create", ["post"=>$post]);
+        return view("{$this->prefix}create", ["post" => $post]);
     }
 
     /**
      * ピック登録
      */
-    public function store(Request $request)
+    public function store(PickRequest $pickRequest)
     {
-        echo "INSERT処理をここで";
+        $pickData = $pickRequest->all();
+        $pickData['userId'] = Auth::user()->id;
+
+        $this->pickService->create($pickData);
+
+        return redirect('/mypage');
     }
 
     /**

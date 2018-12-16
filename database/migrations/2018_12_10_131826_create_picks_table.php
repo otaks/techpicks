@@ -18,7 +18,7 @@ class CreatePicksTable extends Migration
             $table->integer('user_id')->references('id')->on('users');
             $table->integer('post_id')->references('id')->on('posts');
             $table->longText('comment')->charset('utf8')->nullable();
-            $table->bigInteger('is_liked_count')->nullable(false);
+            $table->integer('is_liked_count')->unsigned()->default(0);
             $table->timestamps();
         });
     }

@@ -22,15 +22,15 @@
     </div>
     <div class="row">
         <div class="col-sm-8 mb-5">
-            <form method="POST" action="/picks">
-                {{ csrf_field() }}
+            {{Form::open(['url' => '/picks'])}}
                 <div class="form-group">
-                    <label for="comment">コメント</label>
-                    <textarea class="form-control" name="comment" rows="5"></textarea>
-                    <input type="hidden" name="postId" value="{{$post->id}}">
+                    {{Form::label('comment', 'コメント')}}
+                    {{Form::textarea('comment',null, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
+                    {{Form::hidden('postId', $post->id)}}
                 </div>
                 <button type="submit" class="btn btn-block btn-primary mt-5">ピック！</button>
-            </form>
+            {{Form::close()}}
+
         </div>
     </div>
 </div>
