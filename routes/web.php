@@ -32,11 +32,11 @@ Route::group(['middleware' => ['auth']], function () {
         $router->get('post/create', 'PostController@create')->name('post.create');
         Route::group(['prefix' => 'mypage'], function ($router) {
             $router->get('/', 'MypageController@index')->name('mypage.index');
-
-        //記事詳細画面
-        Route::get('/post/detail/{postId}', 'PostDetailController@show');
         });
 
+        //記事詳細画面
+        Route::get('post/detail/{postId}', 'PostDetailController@show')->where('postId', '[0-9]+');;
+        
         $router->get('posts/create', 'PostController@create');
         $router->post('posts/create', 'PostController@store');
     });
