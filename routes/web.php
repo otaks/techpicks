@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
             $router->get('/', 'MypageController@index')->name('mypage.index');
 
         //記事詳細画面
-        Route::get('/picks/detail/{postId}', 'PickdetailController@show');
+        Route::get('/post/detail/{postId}', 'PostDetailController@show');
         });
     });
     Route::resource('post', 'HomeController');
