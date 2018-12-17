@@ -183,8 +183,7 @@ return [
         /*
          * Facebook Login
          */
-        Laravel\Socialite\SocialiteServiceProvider::class
-
+        App\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*

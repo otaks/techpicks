@@ -23,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('App\Services\UserService');
         $this->app->bind('App\Services\PostService');
         $this->app->bind('App\Services\MyPickService');
+        $this->app->bind('App\Services\FacebookService');
     }
 }

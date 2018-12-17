@@ -44,8 +44,6 @@ Route::group(['middleware' => ['auth']], function () {
 /*
  * Facebook login
  */
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
+Route::get('facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
 
-Route::group(['namespace' => 'Auth'], function () {
-    Route::get('login/facebook', 'LoginController@socialLogin');
-    Route::get('login/facebook/callback', 'LoginController@callback');
-});
