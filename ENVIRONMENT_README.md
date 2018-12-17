@@ -47,8 +47,9 @@ DB_USERNAME=cm_user
 DB_PASSWORD=password
 
 # Facebook Login(Test)
- FACEBOOK_APP_ID = 271409093570484
- FACEBOOK_APP_SECRET = 66450913d1e8044cd73b29ce62ff051d
- FACEBOOK_CALLBACK_URL = http://localhost/login/facebook/callback
+# 設定方法 https://iriedev.kibe.la/@irie-dev/105
+FACEBOOK_APP_ID = @@@@@@@@@@@@@@
+FACEBOOK_APP_SECRET = @@@@@@@@@@@@@@@
+FACEBOOK_CALLBACK_URL = http://localhost/facebook/callback
 ...
 ```
