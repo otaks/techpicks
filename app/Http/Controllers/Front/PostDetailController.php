@@ -3,32 +3,33 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
-use App\Services\PostService;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Pick;
+use App\Services\PickService;
+use App\Services\PostService;
+use App\Http\Requests\PickRequest;
 
 class PostDetailController extends Controller
 {
+    private $prefix = 'front.posts.';
     private $postService;
 
-    public function __construct(PostService $postService)
+    public function __construct(PostService $postService, PickService $pickService)
     {
         $this->postService = $postService;
+        $this->pickService = $pickService;
     }
 
     /**
-    * 指定記事の詳細
-    *
-    * @param    Request $request
-    * @param    $postId
-    * @return   Response
+    * 指定記事の詳細表示
     */
     public function show($postId)
     {
-        // レコードを検索
-        $post = $this->postService->get($postId);
+        // 対象記事とコメントの検索
+        $results = $this->pickService->detail($postId);
+
         // 検索結果をビューに渡す
-        return view('postDetail');
+        return view("{$this->prefix}postDetail",'results');
     }
 }

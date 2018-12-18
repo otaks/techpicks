@@ -43,4 +43,18 @@ class PickService
 
         });
     }
+
+    /**
+     * 対象Postに紐づくPickを参照
+     */
+    public function detail($post_id)
+    {
+        $picks  = \DB::table('Posts')
+        ->join("picks", 'posts.id','=','picks.post_id')
+        ->orderBy('picks.created_at')
+        ->get();
+
+        return $picks;
+    }
+
 }
