@@ -10,7 +10,7 @@
     @foreach ($posts as $post)
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
-                <img class="card-img-top" src="{{$post->url}}" height="300px"  alt="Card image cap">
+                <a href="post/detail/{{$post->id}}"><img class="card-img-top" src="{{$post->url}}" height="300px"  alt="Card image cap"></a>
                 <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
                     <p class="card-text">{{$post->description}}</p>
