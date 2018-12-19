@@ -49,7 +49,7 @@ class PickService
      */
     public function detail($post_id)
     {
-        $picks  = \DB::table('Posts')
+        $picks  = \DB::table('posts')
         ->join("picks", 'posts.id','=','picks.post_id')
         ->orderBy('picks.created_at')
         ->get();
