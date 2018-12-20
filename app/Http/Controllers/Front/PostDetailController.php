@@ -29,7 +29,9 @@ class PostDetailController extends Controller
         // 対象記事とコメントの検索
         $results = $this->pickService->detail($postId);
 
+        // dd($results);
+
         // 検索結果をビューに渡す
-        return view("{$this->prefix}postDetail",'results');
+        return view("{$this->prefix}postDetail",compact('results'));
     }
 }
