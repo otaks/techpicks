@@ -21,6 +21,7 @@ class MypageController extends Controller
     {
         $userId = \Auth::user()->id;
         $posts = $this->myPickService->getLatestMyPicks($userId);
+        $posts = $this->myPickService->addTopCommentOnEachPost($posts);
         return view("{$this->prefix}index", ["posts"=>$posts]);
     }
 }

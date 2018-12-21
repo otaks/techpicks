@@ -9,12 +9,12 @@
     <div class="row">
     @foreach ($posts as $post)
         <div class="col-md-12">
-            <div class="card mb-12 shadow-sm">
+            <div class="card mb-5 shadow-sm">
                 <a href="post/detail/{{$post->id}}"><img class="card-img-top" src="{{$post->url}}" height="300px"  alt="Card image cap"></a>
                 <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
                     <p class="card-text">{{$post->description}}</p>
-                    <p class="card-text border border-secondary"><img class="rounded-circle" src="{{ asset('storage/sekainoaoki.jpg') }}" alt="Generic placeholder image" width="100" height="100">トップのコメントをここに表示</p>
+                    <p class="card-text border border-secondary"><img class="rounded-circle" src="{{ asset('storage/sekainoaoki.jpg') }}" alt="Generic placeholder image" width="100" height="100">{{$post->top_comment}}</p>
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
