@@ -15,4 +15,25 @@ class MyPickService
         ->get();
         return $myPicks;
     }
+
+    /**
+     * 記事毎にトップコメントを追加
+     *
+     * @param $posts
+     * @return mixed
+     */
+    public function addTopCommentOnEachPost($posts)
+    {
+        foreach ($posts as $post) {
+            $myPick = \App\Pick::select()
+                ->where('post_id', $post->id)
+                ->orderBy('is_liked_count', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->limit(1)
+                ->get();
+            $post['top_comment'] = $myPick[0]->comment;
+        }
+
+        return $posts;
+    }
 }
