@@ -45,7 +45,7 @@ class PickService
     }
 
     /**
-     * 対象Postに紐づくPickを参照
+     * 対象Postに紐づくPickを結合
      */
     public function detail($post_id)
     {
@@ -53,12 +53,6 @@ class PickService
                     ->where('posts.id',$post_id)
                     ->join('posts','picks.post_id','=','posts.id')
                     ->get();
-
-        // $picks  = \DB::table('posts')
-        // ->where('id',$post_id)
-        // ->join("picks", 'posts.id','=','picks.post_id')
-        // ->orderBy('picks.created_at')
-        // ->get();
 
         return $picks;
     }

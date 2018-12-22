@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     @foreach ($results as $post)
+    @if($loop->first)
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
@@ -27,6 +28,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
@@ -36,9 +38,8 @@
                         <button type="button" class="btn btn-sm btn-outline-secondary">いいね数 {{$post->is_liked_count}}</button>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ url('/picks/create', $post->id) }}">
+                        {{-- いいねボタンは未実装 --}}
                             <button type="button" class="btn btn-sm btn-outline-secondary">いいね</button>
-                        </a>
                     </div>
                 </div>
             </div>
