@@ -3,18 +3,26 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Services\MyPickService;
 
 class PostService
 {
+    private $myPickService;
+
+    public function __construct(MyPickService $myPickService)
+    {
+        $this->myPickService = $myPickService;
+    }
+
     public function getLatestTenArticles()
     {
         // 最新10件のみ記事を表示する
-        $results = DB::table('posts')
+        $results = \App\Post::select()
             ->orderBy('created_at')
             ->take(10)
             ->get();
-
-        return $results;
+        $posts = $this->myPickService->addTopCommentOnEachPost($results);
+        return $posts;
     }
 
     /**
