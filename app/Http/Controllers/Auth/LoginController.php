@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Socialite;
-use App\User;
 use Auth;
+use App\Services\FacebookService;
 
 class LoginController extends Controller
 {
@@ -31,45 +30,43 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $facebookService;
+
     /**
      * Create a new controller instance.
      *
+     * LoginController constructor.
+     * @param FacebookService $facebookService
      * @return void
      */
-    public function __construct()
+    public function __construct(FacebookService $facebookService)
     {
         $this->middleware('guest')->except('logout');
+        $this->facebookService = $facebookService;
     }
 
-    public function socialLogin()
+    /**
+     * Facebook認証ページヘユーザーをリダイレクト
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function redirectToFacebookProvider()
     {
-        return Socialite::driver('facebook')->redirect();
+        if (Auth::check()) return redirect($this->redirectTo);
+
+        return $this->facebookService->redirect();
     }
 
-    public function callback()
+    /**
+     * Facebookからユーザー情報を取得
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function handleFacebookProviderCallback()
     {
-        // ソーシャルサービス（情報）を取得
-        $userSocial = $data = Socialite::driver('facebook')->user();
+        $user = $this->facebookService->get();
+        if (!Auth::check()) Auth::loginUsingId($user->id);
 
-        //e mailで登録を調べる
-        $user = User::where(['email' => $userSocial->getEmail()])->first();
-
-
-        // 登録（email）の有無で分岐
-        if ($user) {
-            //す でに登録済みの場合は、そのままログイン
-            Auth::login($user);
-            return redirect('/');
-        } else {
-            // 初めての方は登録を
-            $newUser = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-            ]);
-
-            //そのままログイン
-            Auth::login($newUser);
-            return redirect('/');
-        }
+        return redirect($this->redirectTo);
     }
 }

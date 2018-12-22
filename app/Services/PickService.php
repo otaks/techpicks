@@ -23,12 +23,22 @@ class PickService
      */
     public function create($pickData)
     {
+        //対象記事を取得
         $post = $this->postService->get($pickData['postId']);
         if ($post == null) {
-            throw new \UnexpectedValueException("Postが見つかりません");
+            throw new \UnexpectedValueException("記事が見つかりません");
         }
 
+        //すでにピック済みかチェックする
+        $pick = Pick::where('user_id', $pickData['userId'])
+            ->where('post_id', $post->id)->first();
+        if ($pick != null) {
+            throw new \UnexpectedValueException("既にピックされています");
+        }
+
+        //DBに登録
         return DB::transaction(function () use ($pickData, $post) {
+            //ピック登録
             $pick = new Pick();
             $pick->comment = $pickData['comment'];
             $pick->user_id = $pickData['userId'];
@@ -36,6 +46,7 @@ class PickService
             $pick->is_liked_count = 0;
             $pick->save();
 
+            //対象記事のピックカウント更新
             $post->is_picked_count++;
             $post->save();
 

@@ -23,10 +23,15 @@
     <div class="row">
         <div class="col-sm-8 mb-5">
             {{Form::open(['url' => '/picks'])}}
+                {{Form::hidden('postId', $post->id)}}
                 <div class="form-group">
+                    @if ($errors->has('comment'))
+                        <div>
+                            {{$errors->first('comment')}}
+                        </div>
+                    @endif
                     {{Form::label('comment', 'コメント')}}
                     {{Form::textarea('comment',null, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
-                    {{Form::hidden('postId', $post->id)}}
                 </div>
                 <button type="submit" class="btn btn-block btn-primary mt-5">ピック！</button>
             {{Form::close()}}

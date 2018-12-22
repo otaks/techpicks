@@ -7,6 +7,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    private $prefix = 'front.errors.';
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -48,6 +50,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof UnexpectedValueException) {
+            return response()->view('{$this->prefix}error', ['message' => $exception->getMessage()], 500);
+        }
+
+
         return parent::render($request, $exception);
     }
 }
