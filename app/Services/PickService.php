@@ -54,4 +54,18 @@ class PickService
 
         });
     }
+
+    /**
+     * 対象Postに紐づくPickを結合
+     */
+    public function detail($post_id)
+    {
+        $picks = Pick::select()
+                    ->where('posts.id',$post_id)
+                    ->join('posts','picks.post_id','=','posts.id')
+                    ->get();
+
+        return $picks;
+    }
+
 }
