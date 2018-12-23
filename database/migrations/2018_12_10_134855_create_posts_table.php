@@ -17,8 +17,9 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->integer('is_picked_count')->unsigned()->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
