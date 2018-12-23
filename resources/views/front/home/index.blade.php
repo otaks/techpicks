@@ -5,7 +5,7 @@
     <div class="row">
     @foreach ($results as $post)
         <div class="col-md-12">
-            <div class="card  shadow-sm" style="max-width: 25rem;">
+            <div class="card  shadow-sm mb-4" style="max-width: 25rem;">
                 <img class="card-img-top" src="{{$post->url}}" height="300px"  alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
@@ -26,7 +26,6 @@
                     </div>
                 </div>
             </div>
-            <br>
         </div>
         @endforeach
     </div>
