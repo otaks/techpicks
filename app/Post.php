@@ -13,7 +13,7 @@ class Post extends Model
      */
     protected $table = 'posts';
 
-    protected $fillable = ['url', 'title', 'description', 'is_picked_count'];
+    protected $fillable = ['url', 'title', 'description', 'image'];
 
     public function pick()
     {
