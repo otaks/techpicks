@@ -1,0 +1,94 @@
+<template>
+    <div>
+        <form method="post" @submit.prevent="onSubmit">
+            <input type="hidden" name="_token" :value="csrf" />
+            <div class="form-group">
+                <label for="url">URL入力欄</label>
+                <div class="col-md-6">
+                    <input v-model="url" @change="analyseOgp" placeholder="URLを入力することでOGPを生成します" size="50">
+                </div>
+                <div v-if="errors && errors.url" class="error">
+                    <p>{{ errors.url[0] }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div v-if="isOgpFound" class="card" style="width: 18rem;">
+                    <img class="card-img-top" v-bind:src="meta.image" alt="カードの画像">
+                    <div class="card-body">
+                        <h5 class="card-title">{{meta.title}}</h5>
+                        <p class="card-text">{{meta.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">コメント入力欄</label>
+                <div class="col-md-6">
+                    <textarea v-model="comment" placeholder="" :cols="47"></textarea>
+                </div>
+                <div v-if="errors && errors.comment" class="error">
+                    <p>{{ errors.comment[0] }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <button v-bind:disabled="!isOgpFound || isProcessing" type="submit" class="btn btn-block btn-primary mt-5">Submit</button>
+            </div>
+        </form>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+          return {
+              csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+              url: '',
+              comment: '',
+              errors:{},
+              meta: {},
+              isOgpFound: false,
+              isProcessing: false,
+          }
+        },
+        methods: {
+            onSubmit() {
+                this.isProcessing = true;
+                axios.post('/posts/create', this.createPostData())
+                    // .then((response) => console.log('成功'))
+                    .then(response => window.location.href='/mypage')
+                    .catch(response => { this.errorHandling(response) });
+            },
+            createPostData() {
+                return {
+                    'url': this.meta.url || this.url,
+                    'title': this.meta.title,
+                    'description' : this.meta.description,
+                    'image': this.meta.image,
+                    'comment': this.comment,
+                }
+            },
+            analyseOgp() {
+                axios.get('/api/ogps/analysis', {
+                    params: { 'url': this.url },
+                })
+                    .then(response => { this.enableOgp(response) })
+                    .catch(e => { this.errorHandling(e.response) }
+                    )
+            },
+            enableOgp(response) {
+                if (response && response.data) {
+                    this.meta = response.data
+                    this.isOgpFound = true
+                    this.errors.url = {}
+                }
+            },
+            errorHandling(response) {
+                this.isOgpFound = false
+                this.isProcessing = false
+                this.meta = {}
+                this.errors = response.data.errors
+            },
+        },
+        mounted() {
+        }
+    }
+</script>
