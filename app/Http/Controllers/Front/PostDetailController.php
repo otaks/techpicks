@@ -15,9 +15,8 @@ class PostDetailController extends Controller
     private $prefix = 'front.posts.';
     private $postService;
 
-    public function __construct(PostService $postService, PickService $pickService)
+    public function __construct(PickService $pickService)
     {
-        $this->postService = $postService;
         $this->pickService = $pickService;
     }
 
