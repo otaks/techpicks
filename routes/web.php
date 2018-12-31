@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
             $router->get('/', 'MypageController@index')->name('mypage.index');
         });
 
+        //記事詳細画面
+        Route::get('posts/detail/{postId}', 'PostDetailController@show')->where('postId', '[0-9]+');
         $router->get('posts/create', 'PostController@create');
         $router->post('posts/create', 'PostController@store');
     });
