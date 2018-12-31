@@ -47,7 +47,7 @@ class LikeService
                 ->where('user_id', $user->id)
                 ->get();
             
-            $pick['is_liked'] = $myLike->isEmpty() ? "false" :"true";
+            $pick['is_liked'] = $myLike->isEmpty() ? false : true;
         }
 
         return $picks;
