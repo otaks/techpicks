@@ -1,7 +1,6 @@
 <template>
     <div>
         <form method="post" @submit.prevent="onSubmit">
-            <input type="hidden" name="_token" :value="csrf" />
             <div class="form-group">
                 <label for="url">URL入力欄</label>
                 <div class="col-md-6">
@@ -40,7 +39,6 @@
     export default {
         data() {
           return {
-              csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
               url: '',
               comment: '',
               errors:{},
@@ -53,9 +51,8 @@
             onSubmit() {
                 this.isProcessing = true;
                 axios.post('/posts/create', this.createPostData())
-                    // .then((response) => console.log('成功'))
                     .then(response => window.location.href='/mypage')
-                    .catch(response => { this.errorHandling(response) });
+                    .catch(e => { this.errorHandling(e.response) });
             },
             createPostData() {
                 return {
@@ -70,22 +67,25 @@
                 axios.get('/api/ogps/analysis', {
                     params: { 'url': this.url },
                 })
-                    .then(response => { this.enableOgp(response) })
-                    .catch(e => { this.errorHandling(e.response) }
-                    )
+                .then(response => { this.enableOgp(response) })
+                .catch(e => { this.errorHandling(e.response) })
             },
             enableOgp(response) {
-                if (response && response.data) {
-                    this.meta = response.data
-                    this.isOgpFound = true
-                    this.errors.url = {}
-                }
+                this.meta = response.data
+                this.isOgpFound = true
+                this.errors.url = {}
             },
             errorHandling(response) {
-                this.isOgpFound = false
-                this.isProcessing = false
+                if ((response.data.exception) || (response.data.errors && response.data.errors.url)) this.disableOgp(response)
+                this.setFormRequestError(response)
+            },
+            disableOgp(response) {
                 this.meta = {}
-                this.errors = response.data.errors
+                this.isOgpFound = false
+            },
+            setFormRequestError(response) {
+                this.errors = response.data.errors || {}
+                this.isProcessing = false
             },
         },
         mounted() {
