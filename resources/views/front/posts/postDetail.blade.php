@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
-                <img class="card-img-top" src="{{$post->url}}" height="300px"  alt="Card image cap">
+                <img class="card-img-top" src="{{$post->image}}" height="300px"  alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
                     <p class="card-text">{{$post->description}}</p>
