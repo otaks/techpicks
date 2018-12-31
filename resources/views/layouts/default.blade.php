@@ -12,7 +12,7 @@
 
 <body>
     <div id="app" class="wrapper">
-        @include('front.partials.sidebar')
+
         <div id="content">
             @include('front.partials.navbar')
             @yield('content')
