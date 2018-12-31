@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label for="url">URL入力欄</label>
                 <div class="col-md-6">
-                    <input v-model="url" @change="analyseOgp" placeholder="URLを入力することでOGPを生成します" size="50">
+                    <input v-model="url" placeholder="URLを入力することでOGPを生成します" size="50">
                 </div>
                 <div v-if="errors && errors.url" class="error">
                     <p>{{ errors.url[0] }}</p>
@@ -46,6 +46,11 @@
               isOgpFound: false,
               isProcessing: false,
           }
+        },
+        watch: {
+          url() {
+              this.analyseOgp()
+          },
         },
         methods: {
             onSubmit() {
