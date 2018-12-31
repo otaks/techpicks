@@ -27,19 +27,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
-                  <h5 class="card-title">{{$post->comment}}</h5>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                           <button type="button" class="btn btn-sm btn-outline-secondary">いいね数 {{$post->is_liked_count}}</button>
-                      </div>
-                      <div class="btn-group">
-                          {{-- いいねボタンは未実装 --}}
-                              <button type="button" class="btn btn-sm btn-outline-secondary">いいね</button>
-                      </div>
-                   </div>
+                <h5 class="card-title">{{$post->comment}}</h5>
+                <div id='app'>
+                   <like-component v-bind:good-num="{{$post->is_liked_count}}" v-bind:pick-id="{{$post->id}}" v-bind:user-id="{{$user->id}}" v-bind:is-liked="{{$post->is_liked}}"></like-component>
+                </div>
             </div>
         </div>
     </div>
     @endforeach
+
 </div>
+<script src="{{ mix('js/front.js') }}" ></script>
 @endsection
+
+
