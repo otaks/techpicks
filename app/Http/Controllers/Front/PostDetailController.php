@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Pick;
 use App\Services\PickService;
-use App\Services\PostService;
 use App\Http\Requests\PickRequest;
 
 class PostDetailController extends Controller
 {
     private $prefix = 'front.posts.';
-    private $postService;
 
     public function __construct(PickService $pickService)
     {
