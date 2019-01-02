@@ -20,7 +20,6 @@
                     <br>
                     <div class="d-flex justify-content-between align-items-center">
                         <button type="button" class="btn btn-sm btn-outline-secondary">{{$post->is_picked_count}} Pick</button>
-
                         <a href="{{ url('/picks/create', $post->id) }}">
                             <button type="button" class="btn btn-sm badge-pill btn-primary">Pick</button>
                         </a>
