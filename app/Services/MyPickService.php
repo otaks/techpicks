@@ -26,7 +26,7 @@ class MyPickService
     {
         foreach ($posts as $post) {
             $myPick = \App\Pick::select()
-                ->where('post_id', $post->id)
+                ->where('post_id', $post->post_id)
                 ->orderBy('is_liked_count', 'desc')
                 ->orderBy('created_at', 'desc')
                 ->limit(1)
