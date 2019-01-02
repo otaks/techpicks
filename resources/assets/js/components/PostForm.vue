@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <div v-if="isOgpFound" class="card" style="width: 18rem;">
-                    <img class="card-img-top" v-bind:src="meta.image" alt="カードの画像">
+                    <img v-if="meta.image" class="card-img-top" v-bind:src="meta.image" alt="カードの画像">
                     <div class="card-body">
                         <h5 class="card-title">{{meta.title}}</h5>
                         <p class="card-text">{{meta.description}}</p>
