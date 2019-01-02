@@ -31,7 +31,7 @@ class MyPickService
                 ->orderBy('created_at', 'desc')
                 ->limit(1)
                 ->get();
-            $post['top_comment'] = $myPick[0]->comment;
+            $post['top_comment'] = ($myPick->first())['comment'];
         }
 
         return $posts;
