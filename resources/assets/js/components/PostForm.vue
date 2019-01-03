@@ -3,15 +3,13 @@
         <form method="post" @submit.prevent="onSubmit">
             <div class="form-group">
                 <label for="url">URL入力欄</label>
-                <div class="col-md-6">
-                    <input v-model="url" placeholder="URLを入力することでOGPを生成します" size="50">
-                </div>
+                <input class="form-control" v-model="url" placeholder="URLを入力することでOGPを生成します">
                 <div v-if="errors && errors.url" class="error">
                     <p>{{ errors.url[0] }}</p>
                 </div>
             </div>
             <div class="form-group">
-                <div v-if="isOgpFound" class="card" style="width: 18rem;">
+                <div v-if="isOgpFound" class="card">
                     <img v-if="meta.image" class="card-img-top" v-bind:src="meta.image" alt="カードの画像">
                     <div class="card-body">
                         <h5 class="card-title">{{meta.title}}</h5>
@@ -21,9 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="description">コメント入力欄</label>
-                <div class="col-md-6">
-                    <textarea v-model="comment" placeholder="" :cols="47"></textarea>
-                </div>
+                <textarea class="form-control" v-model="comment" placeholder=""></textarea>
                 <div v-if="errors && errors.comment" class="error">
                     <p>{{ errors.comment[0] }}</p>
                 </div>
@@ -97,3 +93,15 @@
         }
     }
 </script>
+<style scoped lang="scss">
+    .card {
+        @extend .card;
+        width: 100%;
+    }
+    .card-text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+    }
+</style>
