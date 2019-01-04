@@ -7,21 +7,23 @@
         </div>
         
         <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement(pickId, userId)" v-if="this.isLikedInternal">いいね</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement(pickIdInternal, userIdInternal)" v-if="this.isLikedInternal">いいね</button>
 
-            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment(pickId, userId)" v-else>いいね</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment(pickIdInternal, userIdInternal)" v-else>いいね</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props:["goodNum", "pickId", "userId", "isLiked"],
+    props:["post", "user"],
     name:'like-component',
     data:function(){
         return{
-            goodNumInternal: this.goodNum,
-            isLikedInternal: this.isLiked
+            pickIdInternal: this.post.id,
+            goodNumInternal: this.post.is_liked_count,
+            isLikedInternal: this.post.is_liked,
+            userIdInternal: this.user.id
         }
     },
     methods:{
