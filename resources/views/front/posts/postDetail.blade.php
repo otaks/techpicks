@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <div class="card mb-12 shadow-sm">
                 <h5 class="card-title">{{$post->comment}}</h5>
-                <like-component v-bind:good-num="{{$post->is_liked_count}}" v-bind:pick-id="{{$post->id}}" v-bind:user-id="{{$user->id}}" v-bind:is-liked='"{{$post->is_liked}}"'></like-component>
+                <like v-bind:good-num="{{$post->is_liked_count}}" v-bind:pick-id="{{$post->id}}" v-bind:user-id="{{$user->id}}" v-bind:is-liked='"{{$post->is_liked}}"'></like>
             </div>
         </div>
     </div>
