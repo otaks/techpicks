@@ -19,9 +19,9 @@ class PostService
         // 最新10件のみ記事を表示する
         $results = \App\Post::select()
             ->orderBy('created_at')
-            ->take(10)
-            ->get();
+            ->paginate(10);
         $posts = $this->myPickService->addTopCommentOnEachPost($results);
+
         return $posts;
     }
 

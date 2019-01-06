@@ -15,6 +15,8 @@ window.Vue = require('vue')
  */
 
 Vue.component('post-form', require('./components/PostForm.vue'))
+Vue.component('home', require('./components/Home.vue'))
+Vue.component('my-page', require('./components/MyPage.vue'))
 
 const app = new Vue({
   el: '#app'
