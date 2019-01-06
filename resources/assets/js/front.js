@@ -14,9 +14,9 @@ window.Vue = require('vue')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('post-form', require('./components/PostForm.vue'))
 Vue.component('home', require('./components/Home.vue'))
 Vue.component('my-page', require('./components/MyPage.vue'))
+Vue.component('post-form', require('./components/PostForm.vue'))
 Vue.component('like-component', require('./components/Like.vue'))
 
 const app = new Vue({

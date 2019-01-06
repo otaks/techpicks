@@ -7,9 +7,9 @@
         </div>
         
         <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement(post.id, user.id)" v-if="this.isLiked">いいね</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement" v-if="this.isLiked">いいね</button>
 
-            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment(post.id, user.id)" v-else>いいね</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment" v-else>いいね</button>
         </div>
     </div>
 </template>
@@ -25,15 +25,15 @@ export default {
         }
     },
     methods:{
-        increment: function($pid, $uid) {
-            axios.get("increment/" + $pid  + "/" + $uid)
+        increment: function() {
+            axios.get("increment/" + this.post.id  + "/" + this.user.id)
                 .then((r) => {
                     this.isLikedCount = r.data.good_num
                     this.isLiked = true
                 })
         },
-        decrement: function($pid, $uid) {
-            axios.get("decrement/" + $pid  + "/" + $uid)
+        decrement: function() {
+            axios.get("decrement/" + this.post.id  + "/" + this.user.id)
                 .then((r) => {
                     this.isLikedCount = r.data.good_num
                     this.isLiked = false
