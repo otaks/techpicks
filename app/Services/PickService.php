@@ -5,6 +5,7 @@ use App\Post;
 use App\Pick;
 use Illuminate\Support\Facades\DB;
 use App\Services\PostService;
+use App\Services\LikeService;
 
 /**
  * Pickサービスクラス
@@ -12,10 +13,12 @@ use App\Services\PostService;
 class PickService
 {
     private $postService;
+    private $likeService;
 
-    public function __construct(PostService $postService)
+    public function __construct(PostService $postService, LikeService $likeService)
     {
         $this->postService = $postService;
+        $this->likeService = $likeService;
     }
 
     /**
@@ -68,4 +71,31 @@ class PickService
         return $picks;
     }
 
+    /**
+     * "いいね"増加
+     */
+    public function incrementLike($pickId, $userId)
+    {
+        $this->likeService->create($pickId, $userId);
+
+        $pick = Pick::find($pickId);
+        $pick->is_liked_count++;
+        $pick->save();
+
+        return $pick->is_liked_count;
+    }
+    
+    /**
+     * "いいね"減少
+     */
+    public function decrementLike($pickId, $userId)
+    {
+        $this->likeService->delete($pickId, $userId);
+
+        $pick = Pick::find($pickId);
+        $pick->is_liked_count--;
+        $pick->save();
+
+        return $pick->is_liked_count;
+    } 
 }

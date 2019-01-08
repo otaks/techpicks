@@ -13,5 +13,5 @@ class Pick extends Model
      */
     protected $table = 'picks';
 
-    protected $fillable = ['comment'];
+    protected $fillable = ['comment','is_liked_count'];
 }

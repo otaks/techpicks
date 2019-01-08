@@ -38,6 +38,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('posts/detail/{postId}', 'PostDetailController@show')->where('postId', '[0-9]+');
         $router->get('posts/create', 'PostController@create');
         $router->post('posts/create', 'PostController@store');
+
+        //"いいね"増加
+        $router->get('posts/detail/increment/{pickId}/{userId}', 'PostDetailController@incrementLike')->where(['pickId' => '[0-9]+', 'userId' => '[0-9]+']);
+        //"いいね"減少
+        $router->get('posts/detail/decrement/{pickId}/{userId}', 'PostDetailController@decrementLike')->where(['pickId' => '[0-9]+', 'userId' => '[0-9]+']);
     });
 
     Route::get('/logout', 'UserController@logout');

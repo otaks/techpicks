@@ -27,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\PostService');
         $this->app->bind('App\Services\MyPickService');
         $this->app->bind('App\Services\FacebookService');
+        $this->app->bind('App\Services\LikeService');
     }
 }
