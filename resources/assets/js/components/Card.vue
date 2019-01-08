@@ -1,6 +1,6 @@
 <template>
     <div class="card col col-sm col-md shadow-sm mb-4">
-        <a href="/posts/detail/post.id"><img class="card-img-top" v-bind:src="post.image" alt="Card image cap"></a>
+        <a v-bind:href="'/posts/detail/' + post.id"><img class="card-img-top" v-bind:src="post.image" alt="Card image cap"></a>
         <div class="card-body">
             <h4 class="card-title post-title">{{post.title}}</h4>
             <p class="card-text post-description">{{post.description}}</p>
