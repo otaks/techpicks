@@ -19,11 +19,15 @@ class HomeController extends Controller
         $this->pickService = $pickService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         // 最新10件のみ記事を表示する
-        $results = $this->postService->getLatestTenArticles();
+        $posts = $this->postService->getLatestTenArticles();
 
-        return view("{$this->prefix}index", compact('results'));
+        if ($request->ajax()) {
+            return json_encode($posts);
+        } else {
+            return view("{$this->prefix}index", ["posts" => json_encode($posts)]);
+        }
     }
 }

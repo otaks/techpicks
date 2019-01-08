@@ -17,11 +17,16 @@ class MypageController extends Controller
         $this->myPickService = $myPickService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $userId = \Auth::user()->id;
         $posts = $this->myPickService->getLatestMyPicks($userId);
         $posts = $this->myPickService->addTopCommentOnEachPost($posts);
-        return view("{$this->prefix}index", ["posts"=>$posts]);
+        if ($request->ajax()) {
+            return json_encode($posts);
+        } else {
+            return view("{$this->prefix}index", ["posts" => json_encode($posts)]);
+        }
+
     }
 }
