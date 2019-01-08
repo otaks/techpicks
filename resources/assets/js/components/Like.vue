@@ -17,7 +17,6 @@
 <script>
 export default {
     props:["post", "user"],
-    name:'like-component',
     data:function(){
         return{
             isLikedCount: this.post.is_liked_count,
@@ -27,15 +26,15 @@ export default {
     methods:{
         increment: function() {
             axios.get("increment/" + this.post.id  + "/" + this.user.id)
-                .then((r) => {
-                    this.isLikedCount = r.data.good_num
+                .then(({ data }) => {
+                    this.isLikedCount = data.is_liked_count
                     this.isLiked = true
                 })
         },
         decrement: function() {
             axios.get("decrement/" + this.post.id  + "/" + this.user.id)
-                .then((r) => {
-                    this.isLikedCount = r.data.good_num
+                .then(({ data }) => {
+                    this.isLikedCount = data.is_liked_count
                     this.isLiked = false
                 })
         }

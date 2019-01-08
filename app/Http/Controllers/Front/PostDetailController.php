@@ -47,7 +47,7 @@ class PostDetailController extends Controller
     public function incrementLike($pickId, $userId)
     {
         $ret = array();
-        $ret['good_num'] = $this->pickService->incrementLike($pickId, $userId);
+        $ret['is_liked_count'] = $this->pickService->incrementLike($pickId, $userId);
         return json_encode($ret);
     }
     /**
@@ -56,7 +56,7 @@ class PostDetailController extends Controller
     public function decrementLike($pickId, $userId)
     {
         $ret = array();
-        $ret['good_num'] = $this->pickService->decrementLike($pickId, $userId);
+        $ret['is_liked_count'] = $this->pickService->decrementLike($pickId, $userId);
         return json_encode($ret);
     }
 }
