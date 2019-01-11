@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
         $router->get('posts/create', 'PostController@create');
         $router->post('posts/create', 'PostController@store');
 
+        $router->get('posts/detail/comments/{postId}', 'PostDetailController@getPicksByPostId')->where('postId', '[0-9]+');
+
         //"いいね"増加
         $router->get('posts/detail/increment/{pickId}/{userId}', 'PostDetailController@incrementLike')->where(['pickId' => '[0-9]+', 'userId' => '[0-9]+']);
         //"いいね"減少
@@ -53,4 +55,3 @@ Route::group(['middleware' => ['auth']], function () {
  */
 Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
 Route::get('facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
-

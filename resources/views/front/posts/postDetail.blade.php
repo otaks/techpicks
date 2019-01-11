@@ -24,16 +24,8 @@
         </div>
     </div>
     @endif
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-12 shadow-sm">
-                <h5 class="card-title">{{$post->comment}}</h5>
-                <like v-bind:post="{{$post}}" v-bind:user="{{$user}}"></like>
-            </div>
-        </div>
-    </div>
+
     @endforeach
+    <post-detail-comments :post-id="{{ $postId }}"></post-detail-comments>
 </div>
 @endsection
-
-

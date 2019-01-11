@@ -94,6 +94,17 @@ class PickService
     }
 
     /**
+     * post_idに一致するpicksを取得
+     */
+    public function getPicksFromPostId($post_id)
+    {
+      $picks = Pick::select()
+                  ->where('post_id',$post_id)
+                  ->paginate(10);
+      return $picks;
+    }
+
+    /**
      * "いいね"増加
      */
     public function incrementLike($pickId, $userId)
@@ -106,7 +117,7 @@ class PickService
 
         return $pick->is_liked_count;
     }
-    
+
     /**
      * "いいね"減少
      */
@@ -119,5 +130,5 @@ class PickService
         $pick->save();
 
         return $pick->is_liked_count;
-    } 
+    }
 }

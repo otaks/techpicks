@@ -38,7 +38,17 @@ class PostDetailController extends Controller
         $results = $this->likeService->addIsLikedOnEachPick($user, $results);
 
         // 検索結果をビューに渡す
-        return view("{$this->prefix}postDetail",compact('user', 'results'));
+        return view("{$this->prefix}postDetail",compact('user', 'results', 'postId'));
+    }
+
+    /**
+     * Get picks records
+     * @param {Integer} $postId
+     */
+    public function getPicksByPostId($postId)
+    {
+        $picks = $this->pickService->getPicksFromPostId($postId);
+        return json_encode($picks);
     }
 
     /**
