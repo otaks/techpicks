@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
@@ -29,7 +30,10 @@ class PickController extends Controller
     public function create($postId)
     {
         $post = $this->postService->get($postId);
-        return view("{$this->prefix}create", ["post" => $post]);
+
+        $user = User::find(1); //TODO:要実装
+        $comment = $this->pickService->getComment($postId, $user->id);
+        return view("{$this->prefix}create", ["post" => $post, "comment" => $comment]);
     }
 
     /**

@@ -25,6 +25,25 @@ class PostService
         return $posts;
     }
 
+    public function getLatestTenArticlesWithIsPicked($user)
+    {
+        // 最新10件のみ記事を表示する
+        $results = \App\Post::select()
+            ->orderBy('created_at')
+            ->paginate(10);
+
+        foreach($results as $result){
+            $pick = \App\Pick::select()
+                ->where('post_id', $result->id)
+                ->where('user_id', $user->id)
+                ->get();
+            $result['is_picked'] = $pick->isEmpty() ? false : true;
+        }
+        $posts = $this->myPickService->addTopCommentOnEachPost($results);
+
+        return $posts;
+    }
+
     /**
      * 指定されたIDでPostを検索する
      */

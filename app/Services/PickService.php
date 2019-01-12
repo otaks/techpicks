@@ -21,6 +21,15 @@ class PickService
         $this->likeService = $likeService;
     }
 
+    public function getComment($post_id, $uid)
+    {
+        $pick = Pick::select()
+            ->where('post_id',$post_id)
+            ->where('user_id',$uid)
+            ->get();
+        return $pick->isEmpty() ? "" : $pick[0]->comment;
+    }
+
     /**
      * Pickを登録する
      */
@@ -36,26 +45,39 @@ class PickService
         $pick = Pick::where('user_id', $pickData['userId'])
             ->where('post_id', $post->id)->first();
         if ($pick != null) {
-            throw new \UnexpectedValueException("既にピックされています");
+            //pick登録済み
+
+            $param =[
+                'comment' => $pickData['comment'],
+                'is_liked_count' => 0   //コメント更新でいいねクリアのため
+            ];
+            DB::table('picks')
+                ->where('post_id', $pickData['postId'])
+                ->where('user_id', $pickData['userId'])
+                ->update($param);
+
+            $this->likeService->deleteAll($pick->id);//コメント更新でいいねクリアのため
+
+        }else{
+            //pick未登録
+
+            DB::transaction(function () use ($pickData, $post) {
+                //ピック登録
+                $pick = new Pick();
+                $pick->comment = $pickData['comment'];
+                $pick->user_id = $pickData['userId'];
+                $pick->post_id = $post->id;
+                $pick->is_liked_count = 0;
+                $pick->save();
+    
+                //対象記事のピックカウント更新
+                $post->is_picked_count++;
+                $post->save();
+    
+                return $pick;
+                
+            });            
         }
-
-        //DBに登録
-        return DB::transaction(function () use ($pickData, $post) {
-            //ピック登録
-            $pick = new Pick();
-            $pick->comment = $pickData['comment'];
-            $pick->user_id = $pickData['userId'];
-            $pick->post_id = $post->id;
-            $pick->is_liked_count = 0;
-            $pick->save();
-
-            //対象記事のピックカウント更新
-            $post->is_picked_count++;
-            $post->save();
-
-            return $pick;
-
-        });
     }
 
     /**
