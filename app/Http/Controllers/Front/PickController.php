@@ -45,7 +45,7 @@ class PickController extends Controller
         $pickData['userId'] = Auth::user()->id;
 
         //ピックを登録
-        $this->pickService->create($pickData);
+        $this->pickService->updateOrCreate($pickData);
 
         //マイピック一覧へリダイレクト
         return redirect('/mypage');
