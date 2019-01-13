@@ -17,9 +17,9 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="comment">
                 <label for="description">コメント入力欄</label>
-                <textarea class="form-control" v-model="comment" placeholder=""></textarea>
+                <textarea class="form-control" v-model="comment" placeholder="" ref="comment"></textarea>
                 <div v-if="errors && errors.comment" class="error">
                     <p>{{ errors.comment[0] }}</p>
                 </div>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+    import vueSmoothScroll from 'vue-smoothscroll'
+    Vue.use(vueSmoothScroll)
     export default {
         data() {
           return {
@@ -68,7 +70,11 @@
                 axios.get('/api/ogps/analysis', {
                     params: { 'url': this.url },
                 })
-                .then(response => { this.enableOgp(response) })
+                .then(response => {
+                    this.enableOgp(response)
+                    this.$nextTick(() => { this.$refs.comment.focus() })
+                    this.$SmoothScroll(document.querySelector('#comment'), 400, null, null, 'y')
+                })
                 .catch(e => { this.errorHandling(e.response) })
             },
             enableOgp(response) {
