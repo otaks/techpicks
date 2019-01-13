@@ -22,6 +22,7 @@ Vue.component(
   'post-detail-comments',
   require('./components/PostDetailComments.vue')
 )
+Vue.component('delete-pick', require('./components/DeletePick.vue'))
 
 const app = new Vue({
   el: '#app'

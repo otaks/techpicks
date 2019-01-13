@@ -66,4 +66,17 @@ class PostService
             'is_picked_count' => 1,
         ]);
     }
+
+    public function decrementIsPickedCount($postId)
+    {
+        $post = PostService::get($postId);
+        \Log::info("$post->is_picked_count=" + (string)$post->is_picked_count);
+        $num = $post->is_picked_count--;
+        $param = [
+            'is_picked_count' => $num
+        ];
+        DB::table('posts')
+            ->where('id', $postId)
+            ->update($param);       
+    }
 }
