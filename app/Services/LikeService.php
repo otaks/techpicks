@@ -39,6 +39,13 @@ class LikeService
             ->delete();
     }    
 
+    public function deleteAll($pickId)
+    {
+        DB::table('likes')
+            ->where('pick_id', $pickId)
+            ->delete();
+    }    
+
     public function addIsLikedOnEachPick($user, $picks)
     {
         foreach($picks as $pick){

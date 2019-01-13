@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\PostService;
@@ -21,8 +22,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        $user = User::find(1); //TODO:要実装
         // 最新10件のみ記事を表示する
-        $posts = $this->postService->getLatestTenArticles();
+        $posts = $this->postService->getLatestTenArticlesWithIsPicked($user);
 
         if ($request->ajax()) {
             return json_encode($posts);

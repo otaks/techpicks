@@ -31,7 +31,11 @@
                         </div>
                     @endif
                     {{Form::label('comment', 'コメント')}}
+                    @if($comment !== "")
+                    {{Form::textarea('comment',$comment, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
+                    @else
                     {{Form::textarea('comment',null, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-block btn-primary mt-5">ピック！</button>
             {{Form::close()}}
