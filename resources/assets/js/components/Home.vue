@@ -4,8 +4,7 @@
             <div v-for="post in list" class="col-12">
                 <card v-bind:post="post">
                     <a slot="pick" v-bind:href="'/picks/create/' + post.id">
-                        <button type="button" class="btn btn-sm badge-pill btn-secondary" v-if="post.is_picked">Pick</button>
-                        <button type="button" class="btn btn-sm badge-pill btn-primary" v-else>Pick</button>
+                        <button type="button" class="btn btn-sm badge-pill" v-bind:class="[post.is_picked ? 'btn-secondary' : 'btn-primary']">Pick</button>
                     </a>
                 </card>
             </div>

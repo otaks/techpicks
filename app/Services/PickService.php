@@ -31,9 +31,9 @@ class PickService
     }
 
     /**
-     * Pickを登録する
+     * Pickを更新/登録する
      */
-    public function create($pickData)
+    public function updateOrCreate($pickData)
     {
         //対象記事を取得
         $post = $this->postService->get($pickData['postId']);
