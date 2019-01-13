@@ -18,6 +18,7 @@ Vue.component('home', require('./components/Home.vue'))
 Vue.component('my-page', require('./components/MyPage.vue'))
 Vue.component('like', require('./components/Like.vue'))
 Vue.component('post-form', require('./components/PostForm.vue'))
+Vue.component('delete-pick', require('./components/DeletePick.vue'))
 
 const app = new Vue({
   el: '#app'

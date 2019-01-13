@@ -3,6 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8 mb-5">
+            @if($pick !== null)
+            <delete-pick v-bind:pick-id="{{$pick->id}}" v-bind:post-id="{{$post->id}}"></delete-pick>
+            @endif
             <div class="card card-post mt-5 mb-5">
                 <div class="card-img-block">
                     <img class="img-fluid" src="https://images.pexels.com/photos/870903/pexels-photo-870903.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Card image cap">
@@ -31,8 +34,8 @@
                         </div>
                     @endif
                     {{Form::label('comment', 'コメント')}}
-                    @if($comment !== "")
-                    {{Form::textarea('comment',$comment, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
+                    @if($pick !== null)
+                    {{Form::textarea('comment',$pick->comment, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
                     @else
                     {{Form::textarea('comment',null, ['class' => 'form-control', 'rows' => 5, 'cols' => null])}}
                     @endif
