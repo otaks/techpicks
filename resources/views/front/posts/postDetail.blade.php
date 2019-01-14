@@ -21,6 +21,6 @@
             </div>
         </div>
     </div>
-    <post-detail-comments :post-id="{{ $post->id }}"></post-detail-comments>
+    <post-detail-comments :post-id="{{ $post->id }}" :user-id="{{ $userId }}"></post-detail-comments>
 </div>
 @endsection

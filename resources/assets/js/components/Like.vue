@@ -5,7 +5,7 @@
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary">いいね数 {{this.isLikedCount}}</button>
         </div>
-        
+
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement" v-if="this.isLiked">いいね</button>
 
@@ -16,23 +16,23 @@
 
 <script>
 export default {
-    props:["post", "user"],
-    data:function(){
+    props:['pickId','liked','loginUserId','likeCount'],
+    data() {
         return{
-            isLikedCount: this.post.is_liked_count,
-            isLiked: this.post.is_liked,
+            isLikedCount: this.likeCount,
+            isLiked: this.liked,
         }
     },
     methods:{
         increment: function() {
-            axios.get("increment/" + this.post.id  + "/" + this.user.id)
+            axios.get("increment/" + this.pickId + "/" + this.loginUserId)
                 .then(({ data }) => {
                     this.isLikedCount = data.is_liked_count
                     this.isLiked = true
                 })
         },
         decrement: function() {
-            axios.get("decrement/" + this.post.id  + "/" + this.user.id)
+            axios.get("decrement/" + this.pickId  + "/" + this.loginUserId)
                 .then(({ data }) => {
                     this.isLikedCount = data.is_liked_count
                     this.isLiked = false

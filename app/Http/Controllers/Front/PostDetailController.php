@@ -30,17 +30,9 @@ class PostDetailController extends Controller
     */
     public function show($postId)
     {
-        // 対象記事とコメントの検索
-        // $results = $this->pickService->detail($postId);
-
-        // dd($results);
-
-        // $user = User::find(1); //TODO:要実装
-        // $results = $this->likeService->addIsLikedOnEachPick($user, $results);
+        $userId = \Auth::user()->id;
         $post = $this->postService->get($postId);
-
-        // 検索結果をビューに渡す
-        return view("{$this->prefix}postDetail",compact('post'));
+        return view("{$this->prefix}postDetail",compact('post','userId'));
     }
 
     /**

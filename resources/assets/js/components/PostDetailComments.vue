@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <pick-comment v-for="pick in picks" :pick="pick" :key="pick.id"></pick-comment>
+    <pick-comment v-for="pick in picks" :pick="pick" :login-user-id="userId" :key="pick.id"></pick-comment>
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
@@ -19,7 +19,7 @@
                 this.page++
             })
         },
-        props: ['postId'],
+        props: ['postId','userId'],
         data() {
             return {
                 page: 1,
