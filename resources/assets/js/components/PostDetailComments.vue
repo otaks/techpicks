@@ -11,12 +11,11 @@
 
     export default {
       created () {
-          axios.get('comments/'+this.postId+'?page=1', {
+          axios.get('comments/'+this.postId, {
               params: { page: this.page },
             })
             .then(({ data }) => {
-                const value = Object.values(data.data)
-                this.picks.push(...value)
+                this.picks.push(...data.data)
                 this.page++
             })
         },
@@ -36,9 +35,8 @@
                     params: { page: this.page },
                 })
                 .then(({ data }) => {
-                    const value = Object.values(data.data)
-                    if (value.length) {
-                      this.picks.push(...value)
+                    if (data.data.length) {
+                      this.picks.push(...data.data)
                       this.page++
                       $state.loaded()
                     } else {
