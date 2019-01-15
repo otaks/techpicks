@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         $router->get('posts/detail/comments/{postId}', 'PostDetailController@getPicksByPostId')->where('postId', '[0-9]+');
 
+        $router->get('posts/detail/like/status/{pickId}/{userId}', 'PostDetailController@checkLiked')->where(['pickId' => '[0-9]+', 'userId' => '[0-9]+']);
         //"いいね"増加
         $router->get('posts/detail/increment/{pickId}/{userId}', 'PostDetailController@incrementLike')->where(['pickId' => '[0-9]+', 'userId' => '[0-9]+']);
         //"いいね"減少

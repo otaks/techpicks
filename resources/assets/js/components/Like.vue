@@ -18,7 +18,19 @@ export default {
             isLiked: this.liked,
         }
     },
+    created() {
+      this.init()
+    },
     methods:{
+        init: function() {
+          this.getLikedStatus()
+        },
+        getLikedStatus: function() {
+          axios.get("like/status/" + this.pickId + "/" + this.loginUserId)
+              .then(({ data }) => {
+                  this.isLiked = data.status
+              })
+        },
         increment: function() {
             axios.get("increment/" + this.pickId + "/" + this.loginUserId)
                 .then(({ data }) => {

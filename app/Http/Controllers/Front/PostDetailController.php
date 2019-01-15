@@ -46,6 +46,16 @@ class PostDetailController extends Controller
     }
 
     /**
+     * いいねをしているかをチェック
+     */
+    public function checkLiked($pickId, $userId)
+    {
+        $ret = array();
+        $ret['status'] = $this->likeService->isLiked($pickId, $userId);
+        return json_encode($ret);
+    }
+
+    /**
      * "いいね"増加
      */
     public function incrementLike($pickId, $userId)

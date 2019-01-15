@@ -37,14 +37,23 @@ class LikeService
             ->where('pick_id', $pickId)
             ->where('user_id', $userId)
             ->delete();
-    }    
+    }
 
     public function deleteAll($pickId)
     {
         DB::table('likes')
             ->where('pick_id', $pickId)
             ->delete();
-    }    
+    }
+
+    public function isLiked($pickId, $userId)
+    {
+      $like = \App\Like::select()
+          ->where('pick_id', $pickId)
+          ->where('user_id', $userId)
+          ->get();
+      return !$like->isEmpty();
+    }
 
     public function addIsLikedOnEachPick($user, $picks)
     {
@@ -53,7 +62,7 @@ class LikeService
                 ->where('pick_id', $pick->id)
                 ->where('user_id', $user->id)
                 ->get();
-            
+
             $pick['is_liked'] = $myLike->isEmpty() ? false : true;
         }
 
