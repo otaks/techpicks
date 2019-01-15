@@ -69,14 +69,14 @@ class PickService
                 $pick->post_id = $post->id;
                 $pick->is_liked_count = 0;
                 $pick->save();
-    
+
                 //対象記事のピックカウント更新
                 $post->is_picked_count++;
                 $post->save();
-    
+
                 return $pick;
-                
-            });            
+
+            });
         }
     }
 
@@ -96,7 +96,7 @@ class PickService
     /**
      * post_idに一致するpicksを取得
      */
-    public function getPicksFromPostId($post_id)
+    public function getPicksByPostId($post_id)
     {
       $picks = Pick::select()
                   ->where('post_id',$post_id)

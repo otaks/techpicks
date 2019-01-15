@@ -41,7 +41,7 @@ class PostDetailController extends Controller
      */
     public function getPicksByPostId($postId)
     {
-        $picks = $this->pickService->getPicksFromPostId($postId);
+        $picks = $this->pickService->getPicksByPostId($postId);
         return json_encode($picks);
     }
 
