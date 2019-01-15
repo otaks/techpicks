@@ -3,13 +3,8 @@
 <template>
     <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">いいね数 {{this.isLikedCount}}</button>
-        </div>
-
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement" v-if="this.isLiked">いいね</button>
-
-            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment" v-else>いいね</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" v-on:click="decrement" v-if="this.isLiked">いいね ({{this.isLikedCount}})</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="increment" v-else>いいね ({{this.isLikedCount}})</button>
         </div>
     </div>
 </template>
