@@ -1,7 +1,10 @@
 <template>
   <div class="row">
     <pick-comment v-for="pick in picks" :pick="pick" :login-user-id="userId" :key="pick.id"></pick-comment>
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+    <infinite-loading @infinite="infiniteHandler">
+      <div slot="no-more"></div>
+      <div slot="no-results"></div>
+    </infinite-loading>
   </div>
 </template>
 
@@ -38,10 +41,12 @@
                     if (data.data.length) {
                       this.picks.push(...data.data)
                       this.page++
-                      $state.loaded()
-                    } else {
-                      $state.complete()
+                      if (this.page <= data.last_page) {
+                        $state.loaded()
+                        return
+                      }
                     }
+                    $state.complete()
                 }).catch((error) => {
                     console.log(error)
                 })
