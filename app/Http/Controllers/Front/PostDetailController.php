@@ -20,6 +20,7 @@ class PostDetailController extends Controller
 
     public function __construct(PostService $postService, PickService $pickService, LikeService $likeService)
     {
+        $this->postService = $postService;
         $this->pickService = $pickService;
         $this->likeService = $likeService;
     }
@@ -29,16 +30,29 @@ class PostDetailController extends Controller
     */
     public function show($postId)
     {
-        // 対象記事とコメントの検索
-        $results = $this->pickService->detail($postId);
+        $userId = \Auth::user()->id;
+        $post = $this->postService->get($postId);
+        return view("{$this->prefix}postDetail",compact('post','userId'));
+    }
 
-        // dd($results);
+    /**
+     * Get picks records
+     * @param {Integer} $postId
+     */
+    public function getPicksByPostId($postId)
+    {
+        $picks = $this->pickService->getPicksByPostId($postId);
+        return json_encode($picks);
+    }
 
-        $user = User::find(1); //TODO:要実装
-        $results = $this->likeService->addIsLikedOnEachPick($user, $results);
-
-        // 検索結果をビューに渡す
-        return view("{$this->prefix}postDetail",compact('user', 'results'));
+    /**
+     * いいねをしているかをチェック
+     */
+    public function checkLiked($pickId, $userId)
+    {
+        $ret = array();
+        $ret['status'] = $this->likeService->isLiked($pickId, $userId);
+        return json_encode($ret);
     }
 
     /**
