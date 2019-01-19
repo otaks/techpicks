@@ -32,9 +32,8 @@ class PickController extends Controller
      */
     public function create($postId)
     {
+        $user = \Auth::user();
         $post = $this->postService->get($postId);
-
-        $user = User::find(1); //TODO:要実装
         $pick = $this->pickService->getPick($postId, $user->id);
         return view("{$this->prefix}create", ["post" => $post, "pick" => $pick]);
     }
