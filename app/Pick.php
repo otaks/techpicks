@@ -14,4 +14,9 @@ class Pick extends Model
     protected $table = 'picks';
 
     protected $fillable = ['comment','is_liked_count'];
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }
