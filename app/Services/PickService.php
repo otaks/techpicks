@@ -21,13 +21,13 @@ class PickService
         $this->likeService = $likeService;
     }
 
-    public function getComment($post_id, $uid)
+    public function getPick($post_id, $uid)
     {
         $pick = Pick::select()
             ->where('post_id',$post_id)
             ->where('user_id',$uid)
             ->get();
-        return $pick->isEmpty() ? "" : $pick[0]->comment;
+        return $pick->isEmpty() ? null : $pick[0];
     }
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Services\PickService;
 use App\Services\PostService;
+use App\Services\LikeService;
 use App\Http\Requests\PickRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,11 +17,13 @@ class PickController extends Controller
     private $prefix = 'front.picks.';
     private $pickService;
     private $postService;
+    private $likeService;
 
-    public function __construct(PostService $postService, PickService $pickService)
+    public function __construct(PostService $postService, PickService $pickService, LikeService $likeService)
     {
         $this->postService = $postService;
         $this->pickService = $pickService;
+        $this->likeService = $likeService;
     }
 
 
@@ -29,11 +32,10 @@ class PickController extends Controller
      */
     public function create($postId)
     {
+        $user = \Auth::user();
         $post = $this->postService->get($postId);
-
-        $user = User::find(1); //TODO:要実装
-        $comment = $this->pickService->getComment($postId, $user->id);
-        return view("{$this->prefix}create", ["post" => $post, "comment" => $comment]);
+        $pick = $this->pickService->getPick($postId, $user->id);
+        return view("{$this->prefix}create", ["post" => $post, "pick" => $pick]);
     }
 
     /**
@@ -77,9 +79,15 @@ class PickController extends Controller
 
     /**
      * ピック削除
+     *
+     * @param $pickId
+     * @param $postId
+     * @return string
      */
-    public function destroy($id)
+    public function destroy($pickId, $postId)
     {
-        echo "DELETE処理をここで";
+        $hasDeleted = $this->postService->deleteMyPick($pickId, $postId);
+
+        return json_encode([ 'has_deleted' => $hasDeleted ]);
     }
 }

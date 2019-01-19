@@ -66,4 +66,31 @@ class PostService
             'is_picked_count' => 1,
         ]);
     }
+
+    public function deleteMyPick($pickId, $postId)
+    {
+        return \DB::transaction(function() use ($pickId, $postId) {
+            $post = $this->get($postId);
+            if (!$post) return false;
+
+            $params = [
+                'is_picked_count' => --$post->is_picked_count
+            ];
+
+            $result = $this->updatePost($postId, $params);
+            if ($result == 0) return false;
+
+            $result =$this->myPickService->deletePick($pickId);
+            if ($result == 0) return false;
+
+            return true;
+        });
+    }
+
+    public function updatePost($postId, $params)
+    {
+        return DB::table('posts')
+            ->where('id', $postId)
+            ->update($params);
+    }
 }

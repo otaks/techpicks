@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
         //ピック時コメント入力関連
         $router->get('/picks/create/{postId}', 'PickController@create')->where('postId', '[0-9]+');
         $router->post('/picks', 'PickController@store');
+        $router->get('/picks/delete/{pickId}/{postId}', 'PickController@destroy')->where('pickId', '[0-9]+')->where('postId', '[0-9]+');
 
         $router->get('post/create', 'PostController@create')->name('post.create');
         Route::group(['prefix' => 'mypage'], function ($router) {
