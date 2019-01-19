@@ -14,7 +14,7 @@ class CreatePicksTable extends Migration
     public function up()
     {
         Schema::create('picks', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('user_id')->references('id')->on('users');
             $table->integer('post_id')->references('id')->on('posts');
             $table->longText('comment')->charset('utf8')->nullable();
