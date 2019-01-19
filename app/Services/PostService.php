@@ -67,16 +67,30 @@ class PostService
         ]);
     }
 
-    public function decrementIsPickedCount($postId)
+    public function deleteMyPick($pickId, $postId)
     {
-        $post = PostService::get($postId);
-        //\Log::info("$post->is_picked_count=" + (string)$post->is_picked_count);
-        $num = $post->is_picked_count--;
-        $param = [
-            'is_picked_count' => $num
-        ];
-        DB::table('posts')
+        return \DB::transaction(function() use ($pickId, $postId) {
+            $post = $this->get($postId);
+            if (!$post) return false;
+
+            $params = [
+                'is_picked_count' => --$post->is_picked_count
+            ];
+
+            $result = $this->updatePost($postId, $params);
+            if ($result == 0) return false;
+
+            $result =$this->myPickService->deletePick($pickId);
+            if ($result == 0) return false;
+
+            return true;
+        });
+    }
+
+    public function updatePost($postId, $params)
+    {
+        return DB::table('posts')
             ->where('id', $postId)
-            ->update($param);       
+            ->update($params);
     }
 }

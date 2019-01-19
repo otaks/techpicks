@@ -30,13 +30,6 @@ class PickService
         return $pick->isEmpty() ? null : $pick[0];
     }
 
-    public function deletePick($pick_id)
-    {
-        DB::table('picks')
-            ->where('id', $pick_id)
-            ->delete();    
-    }
-
     /**
      * Pickを更新/登録する
      */

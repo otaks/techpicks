@@ -20,8 +20,9 @@ export default {
             }
             this.isProcessing = true
             axios.get("/picks/delete/" + this.pickId + "/" + this.postId)
-            .then(() => {
+            .then(({ data }) => {
                 this.isProcessing=false
+                if (data.has_deleted) window.location.href='/'
             })
         }
     }

@@ -49,4 +49,19 @@ class MyPickService
     {
         return !is_null($post->post_id) ? $post->post_id : $post->id;
     }
+
+
+
+    /**
+     * ピック削除
+     *
+     * @param $pickId
+     * @return mixed
+     */
+    public function deletePick($pickId)
+    {
+        return \App\Pick::select()
+            ->where('id', $pickId)
+            ->delete();
+    }
 }

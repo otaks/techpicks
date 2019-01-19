@@ -79,13 +79,15 @@ class PickController extends Controller
 
     /**
      * ピック削除
+     *
+     * @param $pickId
+     * @param $postId
+     * @return string
      */
     public function destroy($pickId, $postId)
     {
-        $this->postService->decrementIsPickedCount($postId);
-        $this->pickService->deletePick($pickId);
-        $this->likeService->deleteAll($pickId);
-        //return redirect()->route('top');   //TODO:遷移元画面への遷移分け
-        return redirect('/');   //TODO:遷移元画面への遷移分け
+        $hasDeleted = $this->postService->deleteMyPick($pickId, $postId);
+
+        return json_encode([ 'has_deleted' => $hasDeleted ]);
     }
 }
