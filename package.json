@@ -31,6 +31,7 @@
         "import-glob-loader": "^1.1.0",
         "popper.js": "^1.14.5",
         "typeface-mplus-1p": "^0.1.63",
-        "vue-infinite-loading": "^2.4.3"
+        "vue-infinite-loading": "^2.4.3",
+        "vue-smoothscroll": "^0.2.0"
     }
 }
