@@ -2,12 +2,16 @@ version: "2"
 
 services:
   nginx:
-    image: nginx:alpine
+    build:
+        context: .
+        dockerfile: ./docker/nginx/Dockerfile
+#    image: nginx:alpine
     volumes:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./public:/var/www/public
     ports:
       - 80:80
+      - 443:443
     links:
       - phpfpm
     depends_on:
@@ -15,7 +19,7 @@ services:
   phpfpm:
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/phpfpm/Dockerfile
     volumes:
       - ./:/var/www/
     links:
