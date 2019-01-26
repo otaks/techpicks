@@ -63,7 +63,8 @@ class PostService
             'url'             => $post['url'],
             'title'           => $post['title'],
             'description'     => $post['description'],
-            'is_picked_count' => 1,
+            'image'           => $post['image'],
+            'is_picked_count' => 0,
         ]);
     }
 
