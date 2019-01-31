@@ -30,12 +30,12 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $post = $this->postService->save($request->all());
-        $pickData = array();
+        $pickData = [];
         $pickData['postId'] = $post->id;
         $pickData['userId'] = \Auth::user()->id;
-        $pickData['comment'] = $request->all()['comment'];
+        $pickData['comment'] = $request->comment;
         $pick = $this->pickService->updateOrCreate($pickData);
 
-        return redirect('mypage');
+        return $pick;
     }
 }
