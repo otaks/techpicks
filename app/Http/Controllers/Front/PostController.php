@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Services\PostService;
+use App\Services\PickService;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -13,10 +14,12 @@ class PostController extends Controller
     private $prefix = 'front.posts.';
 
     private $postService;
+    private $pickService;
 
-    public function __construct(PostService $postService)
+    public function __construct(PostService $postService, PickService $pickService)
     {
         $this->postService = $postService;
+        $this->pickService = $pickService;
     }
 
     public function create()
@@ -26,7 +29,13 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $posts = $this->postService->save($request->all());
-        return redirect('mypage');
+        $post = $this->postService->save($request->all());
+        $pickData = [];
+        $pickData['postId'] = $post->id;
+        $pickData['userId'] = \Auth::user()->id;
+        $pickData['comment'] = $request->comment;
+        $pick = $this->pickService->updateOrCreate($pickData);
+
+        return $pick;
     }
 }

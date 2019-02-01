@@ -7,10 +7,10 @@ class MyPickService
 {
     public function getLatestMyPicks($userId)
     {
-        $myPicks = \App\Post::select()
+        $myPicks = \App\Pick::select()
         ->where('user_id',$userId)
-        ->join("picks", 'posts.id','=','picks.post_id')
-        ->orderBy('picks.created_at')
+        ->join("posts", 'picks.post_id','=','posts.id')
+        ->orderBy('picks.created_at', 'desc')
         ->paginate(10);
 
         return $myPicks;

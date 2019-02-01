@@ -29,7 +29,7 @@ class PostService
     {
         // 最新10件のみ記事を表示する
         $results = \App\Post::select()
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         foreach($results as $result){
@@ -63,7 +63,8 @@ class PostService
             'url'             => $post['url'],
             'title'           => $post['title'],
             'description'     => $post['description'],
-            'is_picked_count' => 1,
+            'image'           => $post['image'],
+            'is_picked_count' => 0,
         ]);
     }
 
