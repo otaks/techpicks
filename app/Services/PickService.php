@@ -32,52 +32,25 @@ class PickService
 
     /**
      * Pickを更新/登録する
+     *
+     * @param $pickData
      */
     public function updateOrCreate($pickData)
     {
-        //対象記事を取得
-        $post = $this->postService->get($pickData['postId']);
-        if ($post == null) {
-            throw new \UnexpectedValueException("記事が見つかりません");
-        }
+        DB::transaction(function () use ($pickData) {
+            $pick = \App\Pick::updateOrCreate(
+                ['user_id' => $pickData['userId'], 'post_id' => $pickData['postId']],
+                ['comment' => $pickData['comment'], 'is_liked_count' => 0]
+            );
 
-        //すでにピック済みかチェックする
-        $pick = Pick::where('user_id', $pickData['userId'])
-            ->where('post_id', $post->id)->first();
-        if ($pick != null) {
-            //pick登録済み
-
-            $param =[
-                'comment' => $pickData['comment'],
-                'is_liked_count' => 0   //コメント更新でいいねクリアのため
-            ];
-            DB::table('picks')
-                ->where('post_id', $pickData['postId'])
-                ->where('user_id', $pickData['userId'])
-                ->update($param);
-
-            $this->likeService->deleteAll($pick->id);//コメント更新でいいねクリアのため
-
-        }else{
-            //pick未登録
-
-            DB::transaction(function () use ($pickData, $post) {
-                //ピック登録
-                $pick = new Pick();
-                $pick->comment = $pickData['comment'];
-                $pick->user_id = $pickData['userId'];
-                $pick->post_id = $post->id;
-                $pick->is_liked_count = 0;
-                $pick->save();
-
-                //対象記事のピックカウント更新
-                $post->is_picked_count++;
-                $post->save();
-
-                return $pick;
-
-            });
-        }
+            if ($pick->getChanges()) {
+                $this->likeService->deleteAll($pick->id);//コメント更新でいいねクリアのため
+            } else {
+                $post = $this->postService->get($pickData['postId']);
+                $this->postService->updatePost($post->id, ['is_picked_count' => ++$post->is_picked_count]);
+            }
+            return $pick;
+        });
     }
 
     /**
