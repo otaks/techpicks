@@ -19,13 +19,4 @@ class Pick extends Model
     {
         return $this->hasMany('App\Like');
     }
-
-    /**
-     * 最近作成されたか
-     *
-     */
-    public function wasRecentlyCreated()
-    {
-        return $this->getChanges() ? true : false;
-    }
 }

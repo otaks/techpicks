@@ -43,7 +43,7 @@ class PickService
                 ['comment' => $pickData['comment'], 'is_liked_count' => 0]
             );
 
-            if ($pick->wasRecentlyCreated()) {
+            if (!$pick->wasRecentlyCreated) {
                 $this->likeService->deleteAll($pick->id);//コメント更新でいいねクリアのため
             } else {
                 $post = $this->postService->get($pickData['postId']);
