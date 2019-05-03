@@ -19,3 +19,9 @@ npm-debug.log
 yarn-error.log
 .env
 docker/db/mysql_data
+/resources/assets/dev/node_modules
+/resources/assets/dev/yarn.lock
+.nuxt/*
+.storybook/*
+localhost.pem
+localhost-key.pem

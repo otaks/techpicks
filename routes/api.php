@@ -18,3 +18,32 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('ogps/analysis', 'Api\OgpController@analysis');
+
+Route::get('/', function(){ return 'helloworld';});
+
+Route::post('auth/login', function(Request $request) {
+    $cred = $request->only('email', 'password');
+
+    clock($cred);
+
+    if (auth()->attempt($cred)) {
+
+        auth()->user()->tokens()->delete();
+        $token = auth()->user()->createToken('SPA');
+
+        return response()->json([
+            'access_token' => $token->accessToken,
+        ]);
+    }
+
+    clock(2);
+
+    return response()->json(['Unauthorized.'], \Illuminate\Http\Response::HTTP_UNAUTHORIZED);
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('auth/user', function(Request $request) {
+        return auth()->user();
+    });
+});
+
