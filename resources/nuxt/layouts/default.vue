@@ -2,8 +2,8 @@
   <div class="sf-site-all">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: Free, open source, & modern CSS framework based on Flexbox" width="112" height="28">
+        <a class="navbar-item" href="">
+          <img src="../static/logo.png" alt="" width="160" height="40">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">

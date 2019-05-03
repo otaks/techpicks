@@ -20,11 +20,12 @@
 
 <script>
 export default{
-
+  /*
   async asyncData({app}){
     const data = await app.$axios.$get('http://localhost:8000/api')
     return {data};
   },
+  */
   methods:{
     loginWithFacebook: function () {
       this.$auth.loginWith('facebook')
@@ -32,6 +33,7 @@ export default{
     async handleClick (){
       //this.$axios.$post('http://localhost:8000/login')
       //await this.$axios.$post('http://localhost:8000/api/auth/login', {
+      /*
       await this.$axios.$post('http://localhost:8000/api/auth/login', {
         email: 'zieme.javonte@example.com',
         password: 'secret'
@@ -42,6 +44,7 @@ export default{
       .catch(function (error) {
         console.log(error);
       });      
+      */
     }
   }
   

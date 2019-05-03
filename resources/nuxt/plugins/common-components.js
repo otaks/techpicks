@@ -2,7 +2,7 @@
 
 //import MyFooter from './../components/MyFooter.vue'
 import Vue from 'vue'
-import MyFooter from './../components/MyFooter.vue'
+import MyFooter from './../components/MyFooter/MyFooter.vue'
 
 const components = { MyFooter, }
 
