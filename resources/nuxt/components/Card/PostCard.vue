@@ -24,9 +24,9 @@
                         <span class="pvNumber">{{postcardPvNumber}}</span>PV
                     </div>
                 </div>
-                <button type="button" class="postcard__footerWrapper__footer__pickButton">
+                <b-button rounded type="button" class="postcard__footerWrapper__footer__pickButton">
                     <span class="pickIcon"><font-awesome-icon icon="pen" /></span>Pick
-                </button>
+                </b-button>
             </div>
         </div>
     </div>
@@ -123,8 +123,6 @@
                     font-size: 16px;
                     background-color: #3273DC;
                     color: white;
-                    border-radius: 25px;
-                    border: solid 1px #DBDBDB;
                     padding-left: 10px;
                     margin-left: auto;
                     .pickIcon
