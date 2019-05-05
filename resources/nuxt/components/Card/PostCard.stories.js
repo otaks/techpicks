@@ -12,7 +12,7 @@ storiesOf('PostCard', module)
                 notify-time="3分前"
                 postcard-title="記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル"
                 postcard-description="ディスクリプションディスクリプションディスクリプションディスクリプションディスクリプションディスクリプション"
-                postcardPicksNumber="1"
+                postcardPicksNumber="100"
                 postcardPvNumber="3"
                 />
             `

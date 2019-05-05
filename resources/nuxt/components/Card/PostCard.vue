@@ -17,12 +17,12 @@
         <div class="postcard__footerWrapper">
             <div class="postcard__footerWrapper__footer">
                 <div class="postcard__footerWrapper__footer__accessAnalysis">
-                    <div class="postcard__footerWrapper__footer__accessAnalysis__sumPicks">
+                    <b-button disabled class="postcard__footerWrapper__footer__accessAnalysis__sumPicks">
                         <span class="picksNumber">{{postcardPicksNumber}}</span>Picks
-                    </div>
-                    <div class="postcard__footerWrapper__footer__accessAnalysis__sumPv">
+                    </b-button>
+                    <b-button disabled class="postcard__footerWrapper__footer__accessAnalysis__sumPv">
                         <span class="pvNumber">{{postcardPvNumber}}</span>PV
-                    </div>
+                    </b-button>
                 </div>
                 <b-button rounded type="button" class="postcard__footerWrapper__footer__pickButton">
                     <span class="pickIcon"><font-awesome-icon icon="pen" /></span>Pick
@@ -92,29 +92,17 @@
                     display: flex;
                     width: 75%;
                     &__sumPicks
-                        font-size: 12px;
-                        padding-left: 3px;
-                        line-height: 1.3;
-                        height: 21px;
-                        width: 49px;
                         color: #FF3860;
-                        border-radius: 5px;
-                        border: solid 1px #ff3860;
+                        border-color: #FF3860;
+                        padding: 5px;
+                        opacity: 1;
                         .picksNumber
-                            font-size: 14px;
                             font-weight: bold;
                             padding-right: 5px;
                     &__sumPv
-                        font-size: 12px;
-                        padding-left: 3px;
-                        line-height: 1.3;
-                        margin-left: 10px;
-                        height: 21px;
-                        width: 39px;
-                        border-radius: 5px;
-                        border: solid 1px #DBDBDB;
+                        opacity: 1;
+                        margin-left: 10px;   
                         .pvNumber
-                            font-size: 14px;
                             font-weight: bold;
                             padding-right: 3px;
                 &__pickButton
