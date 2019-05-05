@@ -24,4 +24,3 @@ docker/db/mysql_data
 .nuxt/*
 localhost.pem
 localhost-key.pem
-**/.DS_Store

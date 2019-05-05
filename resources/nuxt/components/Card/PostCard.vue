@@ -5,30 +5,6 @@
             <span class="postcard__notify__comment">{{notifyComment}}</span>
             <span class="postcard__notify__time">{{notifyTime}}</span>
         </div>
-        <div class="postcard__title">
-            <span class="postcard__title__name">{{postcardTitle}}</span>
-        </div>
-        <div class="postcard__content">
-            <span class="postcard__content__description">{{postcardDescription}}</span>
-            <div class="postcard__content__thumbnail">
-                <img :src="image_path()" class="article_thumbnail">
-            </div>
-        </div>
-        <div class="postcard__footerWrapper">
-            <div class="postcard__footerWrapper__footer">
-                <div class="postcard__footerWrapper__footer__accessAnalysis">
-                    <div class="postcard__footerWrapper__footer__accessAnalysis__sumPicks">
-                        <span class="picksNumber">{{postcardPicksNumber}}</span>Picks
-                    </div>
-                    <div class="postcard__footerWrapper__footer__accessAnalysis__sumPv">
-                        <span class="pvNumber">{{postcardPvNumber}}</span>PV
-                    </div>
-                </div>
-                <button type="button" class="postcard__footerWrapper__footer__pickButton">
-                    <span class="pickIcon"><font-awesome-icon icon="pen" /></span>Pick
-                </button>
-            </div>
-        </div>
     </div>
 </template>    
 
@@ -37,16 +13,7 @@
         name: "PostCard",
         props: {
             notifyComment: String,
-            notifyTime: String,
-            postcardTitle: String,
-            postcardDescription: String,
-            postcardPicksNumber: String,
-            postcardPvNumber: String
-        },
-        methods: {
-            image_path: function(){
-                return require ("../../assets/postcard-thumbnail.png")
-            }
+            notifyTime: String
         }
     }
 </script>
@@ -59,76 +26,6 @@
             font-size: 13px;
             display: flex;
             justify-content: space-between;
-        &__title
-            margin-top: 5px;
-            &__name
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                font-size: 20px;
-                font-weight: bold;
-                
-        &__content
-            display: flex;
-            margin-top: 7px;
-            &__description
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
-                overflow: hidden;
-                width: 75%;
-            &__thumbnail
-                width: 25%;
-                .article_thumbnail
-                    width: 100%;
-                    height: 100%;
-                    max-height: 200px;
-        &__footerWrapper
-            &__footer
-                display: flex;
-                margin-top: 10px;
-                &__accessAnalysis
-                    display: flex;
-                    width: 75%;
-                    &__sumPicks
-                        font-size: 12px;
-                        padding-left: 3px;
-                        line-height: 1.3;
-                        height: 21px;
-                        width: 49px;
-                        color: #FF3860;
-                        border-radius: 5px;
-                        border: solid 1px #ff3860;
-                        .picksNumber
-                            font-size: 14px;
-                            font-weight: bold;
-                            padding-right: 5px;
-                    &__sumPv
-                        font-size: 12px;
-                        padding-left: 3px;
-                        line-height: 1.3;
-                        margin-left: 10px;
-                        height: 21px;
-                        width: 39px;
-                        border-radius: 5px;
-                        border: solid 1px #DBDBDB;
-                        .pvNumber
-                            font-size: 14px;
-                            font-weight: bold;
-                            padding-right: 3px;
-                &__pickButton
-                    height: 36px;
-                    width: 25%;
-                    font-size: 16px;
-                    background-color: #3273DC;
-                    color: white;
-                    border-radius: 25px;
-                    border: solid 1px #DBDBDB;
-                    padding-left: 10px;
-                    margin-left: auto;
-                    .pickIcon
-                        margin-right: 8px;
 
 
 </style>
