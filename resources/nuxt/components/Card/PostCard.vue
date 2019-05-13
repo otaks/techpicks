@@ -17,12 +17,12 @@
         <div class="postcard__footerWrapper">
             <div class="postcard__footerWrapper__footer">
                 <div class="postcard__footerWrapper__footer__accessAnalysis">
-                    <b-button disabled class="postcard__footerWrapper__footer__accessAnalysis__sumPicks">
+                    <div class="button is-outlined postcard__footerWrapper__footer__accessAnalysis__sumPicks">
                         <span class="picksNumber">{{postcardPicksNumber}}</span>Picks
-                    </b-button>
-                    <b-button disabled class="postcard__footerWrapper__footer__accessAnalysis__sumPv">
+                    </div>
+                    <div class="button is-outlined postcard__footerWrapper__footer__accessAnalysis__sumPv">
                         <span class="pvNumber">{{postcardPvNumber}}</span>PV
-                    </b-button>
+                    </div>
                 </div>
                 <b-button rounded type="button" class="postcard__footerWrapper__footer__pickButton">
                     <span class="pickIcon"><font-awesome-icon icon="pen" /></span>Pick
@@ -92,14 +92,14 @@
                     display: flex;
                     width: 75%;
                     &__sumPicks
-                        color: #FF3860;
-                        border-color: #FF3860;
+                        height: 23px;
                         padding: 5px;
                         opacity: 1;
                         .picksNumber
                             font-weight: bold;
                             padding-right: 5px;
                     &__sumPv
+                        height: 23px;
                         opacity: 1;
                         margin-left: 10px;   
                         .pvNumber
