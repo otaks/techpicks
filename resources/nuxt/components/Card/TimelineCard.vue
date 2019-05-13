@@ -17,12 +17,12 @@
                         <div class="box__content__userInfo__profile__userName">{{userName}}</div>
                         <div class="box__content__userInfo__profile__organization">{{organization}}</div>
                     </div>
-                    <b-button disabled class="box__content__userInfo__follower">
+                    <div class="button is-outlined box__content__userInfo__follower">
                         <span class="followerNumber">{{timelineCardFollowerNumber}}</span>フォロワー
-                    </b-button>
-                    <b-button disabled class="box__content__userInfo__picks">
+                    </div>
+                    <div class="button is-outlined box__content__userInfo__picks">
                         <span class="picksNumber">{{timelineCardPicksNumber}}</span>picks
-                    </b-button>
+                    </div>
                 </div>
                 <div class="box__content__pickComment">{{timelienCardPickComment}}</div>
             </div>
