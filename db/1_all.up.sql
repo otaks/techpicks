@@ -4,7 +4,7 @@ CREATE TABLE User
   name VARCHAR(10) NOT NULL,
   org VARCHAR(20),
   profile VARCHAR(50),
-  img NODATATYPE NOT NULL,
+  img VARCHAR(200) NOT NULL,
   PRIMARY KEY (user_id)
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE Reply
   FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
-CREATE TABLE Like
+CREATE TABLE Like_
 (
   like_id INT NOT NULL,
   user_id INT NOT NULL,
