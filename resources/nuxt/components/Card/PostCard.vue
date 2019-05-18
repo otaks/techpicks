@@ -91,6 +91,7 @@
                 &__accessAnalysis
                     display: flex;
                     width: 75%;
+                    pointer-events: none;
                     &__sumPicks
                         height: 23px;
                         padding: 5px;
