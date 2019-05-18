@@ -95,6 +95,8 @@
                         height: 23px;
                         padding: 5px;
                         opacity: 1;
+                        color: #FF3860;
+                        border-color: #FF3860;
                         .picksNumber
                             font-weight: bold;
                             padding-right: 5px;
