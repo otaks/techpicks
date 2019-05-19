@@ -1,0 +1,12 @@
+- user_id: 1
+  name: '山田 太郎'
+  org: '〇△株式会社'
+  profile: 'システム開発しています'
+  img: 'xxx'
+
+- user_id: 2
+  name: '三井 三郎'
+  org: '◆◆◆株式会社'
+  profile: 'システム開発に興味があります'
+  img: 'xxx'
+
