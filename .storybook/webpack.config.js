@@ -22,7 +22,11 @@ module.exports = {
            'css-loader',
            'sass-loader'
          ]
-      }
+        },
+        {
+          test: /\.(jpg|png)$/,
+          loaders: 'url-loader'
+        }
     ]
  },
   resolve: {

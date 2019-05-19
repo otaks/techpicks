@@ -2,20 +2,20 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _5c447133 = () => interopDefault(import('..\\resources\\nuxt\\pages\\CallBack.vue' /* webpackChunkName: "pages_CallBack" */))
-const _50925544 = () => interopDefault(import('..\\resources\\nuxt\\pages\\Card.vue' /* webpackChunkName: "pages_Card" */))
-const _52cb0601 = () => interopDefault(import('..\\resources\\nuxt\\pages\\Comment.vue' /* webpackChunkName: "pages_Comment" */))
-const _2832d83a = () => interopDefault(import('..\\resources\\nuxt\\pages\\DeletePick.vue' /* webpackChunkName: "pages_DeletePick" */))
-const _b853dafe = () => interopDefault(import('..\\resources\\nuxt\\pages\\ExampleComponent.vue' /* webpackChunkName: "pages_ExampleComponent" */))
-const _898c60a6 = () => interopDefault(import('..\\resources\\nuxt\\pages\\Home.vue' /* webpackChunkName: "pages_Home" */))
-const _19ef6e65 = () => interopDefault(import('..\\resources\\nuxt\\pages\\Like.vue' /* webpackChunkName: "pages_Like" */))
-const _43b14dec = () => interopDefault(import('..\\resources\\nuxt\\pages\\logined.vue' /* webpackChunkName: "pages_logined" */))
-const _2c39d5a9 = () => interopDefault(import('..\\resources\\nuxt\\pages\\MyPage.vue' /* webpackChunkName: "pages_MyPage" */))
-const _50792a20 = () => interopDefault(import('..\\resources\\nuxt\\pages\\PickComment.vue' /* webpackChunkName: "pages_PickComment" */))
-const _975d511a = () => interopDefault(import('..\\resources\\nuxt\\pages\\PostDetailComments.vue' /* webpackChunkName: "pages_PostDetailComments" */))
-const _5a7c025c = () => interopDefault(import('..\\resources\\nuxt\\pages\\PostForm.vue' /* webpackChunkName: "pages_PostForm" */))
-const _297a4ee2 = () => interopDefault(import('..\\resources\\nuxt\\pages\\PostLazyLoadable.vue' /* webpackChunkName: "pages_PostLazyLoadable" */))
-const _ee696cd8 = () => interopDefault(import('..\\resources\\nuxt\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _3ee31208 = () => interopDefault(import('../resources/nuxt/pages/CallBack.vue' /* webpackChunkName: "pages/CallBack" */))
+const _3915b0b2 = () => interopDefault(import('../resources/nuxt/pages/Card.vue' /* webpackChunkName: "pages/Card" */))
+const _2896b9d0 = () => interopDefault(import('../resources/nuxt/pages/Comment.vue' /* webpackChunkName: "pages/Comment" */))
+const _7bdae07a = () => interopDefault(import('../resources/nuxt/pages/DeletePick.vue' /* webpackChunkName: "pages/DeletePick" */))
+const _03f3816c = () => interopDefault(import('../resources/nuxt/pages/ExampleComponent.vue' /* webpackChunkName: "pages/ExampleComponent" */))
+const _720fbc14 = () => interopDefault(import('../resources/nuxt/pages/Home.vue' /* webpackChunkName: "pages/Home" */))
+const _25adc0ae = () => interopDefault(import('../resources/nuxt/pages/Like.vue' /* webpackChunkName: "pages/Like" */))
+const _7710f621 = () => interopDefault(import('../resources/nuxt/pages/logined.vue' /* webpackChunkName: "pages/logined" */))
+const _41acb9b2 = () => interopDefault(import('../resources/nuxt/pages/MyPage.vue' /* webpackChunkName: "pages/MyPage" */))
+const _1adf3892 = () => interopDefault(import('../resources/nuxt/pages/PickComment.vue' /* webpackChunkName: "pages/PickComment" */))
+const _432975fc = () => interopDefault(import('../resources/nuxt/pages/PostDetailComments.vue' /* webpackChunkName: "pages/PostDetailComments" */))
+const _570c049b = () => interopDefault(import('../resources/nuxt/pages/PostForm.vue' /* webpackChunkName: "pages/PostForm" */))
+const _f8ab08aa = () => interopDefault(import('../resources/nuxt/pages/PostLazyLoadable.vue' /* webpackChunkName: "pages/PostLazyLoadable" */))
+const _16517f2a = () => interopDefault(import('../resources/nuxt/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -93,59 +93,59 @@ export function createRouter() {
 
     routes: [{
       path: "/CallBack",
-      component: _5c447133,
+      component: _3ee31208,
       name: "CallBack"
     }, {
       path: "/Card",
-      component: _50925544,
+      component: _3915b0b2,
       name: "Card"
     }, {
       path: "/Comment",
-      component: _52cb0601,
+      component: _2896b9d0,
       name: "Comment"
     }, {
       path: "/DeletePick",
-      component: _2832d83a,
+      component: _7bdae07a,
       name: "DeletePick"
     }, {
       path: "/ExampleComponent",
-      component: _b853dafe,
+      component: _03f3816c,
       name: "ExampleComponent"
     }, {
       path: "/Home",
-      component: _898c60a6,
+      component: _720fbc14,
       name: "Home"
     }, {
       path: "/Like",
-      component: _19ef6e65,
+      component: _25adc0ae,
       name: "Like"
     }, {
       path: "/logined",
-      component: _43b14dec,
+      component: _7710f621,
       name: "logined"
     }, {
       path: "/MyPage",
-      component: _2c39d5a9,
+      component: _41acb9b2,
       name: "MyPage"
     }, {
       path: "/PickComment",
-      component: _50792a20,
+      component: _1adf3892,
       name: "PickComment"
     }, {
       path: "/PostDetailComments",
-      component: _975d511a,
+      component: _432975fc,
       name: "PostDetailComments"
     }, {
       path: "/PostForm",
-      component: _5a7c025c,
+      component: _570c049b,
       name: "PostForm"
     }, {
       path: "/PostLazyLoadable",
-      component: _297a4ee2,
+      component: _f8ab08aa,
       name: "PostLazyLoadable"
     }, {
       path: "/",
-      component: _ee696cd8,
+      component: _16517f2a,
       name: "index"
     }],
 
