@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+
+package tp;
+
+message Posts{
+    repeated Post posts = 1;
+}
+
+message Post{
+    string notifyComment = 1;
+    string notifyTime = 2;
+    string postcardTitle = 3;
+    string postcardDescription = 4;
+    string postcardPicksNumber = 5;
+    string postcardPvNumber = 6;
+}
+
+message PostRequest{}
+
+service TpService{
+    rpc GetPosts(PostRequest) returns (Posts);
+}
+
+
