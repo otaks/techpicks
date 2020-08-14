@@ -11,10 +11,10 @@ type Server struct {
 	db *gorm.DB
 }
 
-func (s *Server) GetPosts(ctx context.Context, req *PostRequest) (*Posts, error) {
+func (s *Server) GetPosts(ctx context.Context, req *PostRequest) (*Post_, error) {
 	log.Printf("get posts")
 
-	posts := []Post{}
+	posts := []Post_{}
 	//s.db.Find()
 
 	rows, err := s.db.Table("Post").
@@ -23,9 +23,9 @@ func (s *Server) GetPosts(ctx context.Context, req *PostRequest) (*Posts, error)
 		Joins("left join User on Pick.user_id = User.user_id").
 		Rows()
 	for rows.Next() {
-		t := &Post{rows.}
-		posts.add(t)
+		//t := &Post{rows.}
+		//posts.add(t)
 	}
 
-	return posts
+	return &posts, 1
 }

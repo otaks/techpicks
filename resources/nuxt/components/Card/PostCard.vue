@@ -73,10 +73,7 @@
             display: flex;
             margin-top: 7px;
             &__description
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
-                overflow: hidden;
+                @include description
                 width: 75%;
             &__thumbnail
                 width: 25%;

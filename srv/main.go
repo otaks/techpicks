@@ -5,6 +5,8 @@ import (
 	"log"
 	"net"
 
+	"tp-server/tp"
+
 	"github.com/jinzhu/gorm"
 	"google.golang.org/grpc"
 )
@@ -34,9 +36,9 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	s := Server{db}
+	s := tp.Server{db}
 	grpcServer := grpc.NewServer()
-	RegisterTpServiceServer(grpcServer, &s)
+	tp.RegisterTpServiceServer(grpcServer, &s)
 
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %s", err)

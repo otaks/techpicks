@@ -2,7 +2,7 @@ package tp
 
 import "time"
 
-type Post struct {
+type Post_ struct {
 	post_id     int
 	url         string
 	title       string
