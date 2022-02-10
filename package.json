@@ -24,7 +24,7 @@
     "@storybook/vue": "^5.0.11",
     "axios": "^0.18.0",
     "css-loader": "^3.4.2",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.6.3",
     "nuxt-buefy": "^0.3.5",
     "nuxt-fontawesome": "^0.4.0",
